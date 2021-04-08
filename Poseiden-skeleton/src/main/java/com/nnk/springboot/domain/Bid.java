@@ -10,28 +10,30 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "trade")
-public class Trade {
+@Table(name = "bid")
+public class Bid {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer tradeId;
+  private Integer bidId;
 
   private String account;
 
   private String type;
 
-  private double buyQuantity;
+  private double bidQuantity;
 
-  private double sellQuantity;
+  private double askQuantity;
 
-  private double buyPrice;
+  private double bid;
 
-  private double sellPrice;
+  private double ask;
 
   private String benchMark;
 
-  private Timestamp tradeDate;
+  private Timestamp bidListDate;
+
+  private String commentary;
 
   private String security;
 
@@ -55,5 +57,6 @@ public class Trade {
 
   private String sourceListId;
 
-  private String side;
+  private String sid;
+
 }

@@ -9,19 +9,23 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "rating")
-public class Rating {
+@Table(name = "rule")
+public class Rule {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  private String moodysRating;
+  private String name;
 
-  private String sandPRating;
+  private String description;
 
-  private String fitchRating;
+  private String json;
 
-  private Integer orderNumber;
+  private String template;
+
+  private String sqlStr;
+
+  private String sqlPart;
 
 }
