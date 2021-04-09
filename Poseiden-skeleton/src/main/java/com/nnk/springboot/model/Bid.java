@@ -31,7 +31,7 @@ public class Bid {
 
   private String benchMark;
 
-  private Timestamp bidListDate;
+  private Timestamp bidDate;
 
   private String commentary;
 
@@ -55,7 +55,7 @@ public class Bid {
 
   private String dealType;
 
-  private String sourceListId;
+  private String sourceId;
 
   private String sid;
 

@@ -1,14 +1,15 @@
+CREATE SEQUENCE public.bid_id_seq;
 
-CREATE TABLE BidList (
-  BidListId tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE Bid (
+  BidId SMALLINT NOT NULL DEFAULT nextval('public.bid_id_seq'),
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
-  bidQuantity DOUBLE,
-  askQuantity DOUBLE,
-  bid DOUBLE ,
-  ask DOUBLE,
+  bidQuantity NUMERIC(10,2),
+  askQuantity NUMERIC(10,2),
+  bid NUMERIC(10,2) ,
+  ask NUMERIC(10,2),
   benchmark VARCHAR(125),
-  bidListDate TIMESTAMP,
+  bidDate TIMESTAMP,
   commentary VARCHAR(125),
   security VARCHAR(125),
   status VARCHAR(10),
@@ -20,20 +21,22 @@ CREATE TABLE BidList (
   revisionDate TIMESTAMP ,
   dealName VARCHAR(125),
   dealType VARCHAR(125),
-  sourceListId VARCHAR(125),
+  sourceId VARCHAR(125),
   side VARCHAR(125),
 
-  PRIMARY KEY (BidListId)
-)
+  PRIMARY KEY (BidId)
+);
+
+CREATE SEQUENCE public.trade_id_seq;
 
 CREATE TABLE Trade (
-  TradeId tinyint(4) NOT NULL AUTO_INCREMENT,
+  TradeId SMALLINT NOT NULL DEFAULT nextval('public.trade_id_seq'),
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
-  buyQuantity DOUBLE,
-  sellQuantity DOUBLE,
-  buyPrice DOUBLE ,
-  sellPrice DOUBLE,
+  buyQuantity NUMERIC(10,2),
+  sellQuantity NUMERIC(10,2),
+  buyPrice NUMERIC(10,2) ,
+  sellPrice NUMERIC(10,2),
   tradeDate TIMESTAMP,
   security VARCHAR(125),
   status VARCHAR(10),
@@ -50,31 +53,37 @@ CREATE TABLE Trade (
   side VARCHAR(125),
 
   PRIMARY KEY (TradeId)
-)
+);
 
-CREATE TABLE CurvePoint (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
-  CurveId tinyint,
+CREATE SEQUENCE public.curve_id_seq;
+
+CREATE TABLE Curve_point (
+  Id SMALLINT NOT NULL DEFAULT nextval('public.curve_id_seq'),
+  CurveId SMALLINT,
   asOfDate TIMESTAMP,
-  term DOUBLE ,
-  value DOUBLE ,
+  term NUMERIC(10,2) ,
+  value NUMERIC(10,2) ,
   creationDate TIMESTAMP ,
 
   PRIMARY KEY (Id)
-)
+);
+
+CREATE SEQUENCE public.rating_id_seq;
 
 CREATE TABLE Rating (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
+  Id SMALLINT NOT NULL DEFAULT nextval('public.rating_id_seq'),
   moodysRating VARCHAR(125),
   sandPRating VARCHAR(125),
   fitchRating VARCHAR(125),
-  orderNumber tinyint,
+  orderNumber SMALLINT,
 
   PRIMARY KEY (Id)
-)
+);
 
-CREATE TABLE RuleName (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE SEQUENCE public.rule_id_seq;
+
+CREATE TABLE Rule (
+  Id SMALLINT NOT NULL DEFAULT nextval('public.rule_id_seq'),
   name VARCHAR(125),
   description VARCHAR(125),
   json VARCHAR(125),
@@ -83,17 +92,22 @@ CREATE TABLE RuleName (
   sqlPart VARCHAR(125),
 
   PRIMARY KEY (Id)
-)
+);
+
+CREATE SEQUENCE public.users_id_seq;
 
 CREATE TABLE Users (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
+  Id SMALLINT NOT NULL DEFAULT nextval('public.users_id_seq'),
   username VARCHAR(125),
   password VARCHAR(125),
   fullname VARCHAR(125),
   role VARCHAR(125),
 
   PRIMARY KEY (Id)
-)
+);
 
-insert into Users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "ADMIN")
-insert into Users(fullname, username, password, role) values("User", "user", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "USER")
+INSERT INTO Users 
+(fullname, username, password, role) 
+VALUES 
+('Administrator', 'admin', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'ADMIN'),
+('User', 'user', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER');
