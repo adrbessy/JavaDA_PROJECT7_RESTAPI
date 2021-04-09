@@ -1,4 +1,4 @@
-package com.nnk.springboot.domain;
+package com.nnk.springboot.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

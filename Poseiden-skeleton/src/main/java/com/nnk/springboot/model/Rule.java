@@ -1,4 +1,4 @@
-package com.nnk.springboot.domain;
+package com.nnk.springboot.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,5 +27,14 @@ public class Rule {
   private String sqlStr;
 
   private String sqlPart;
+
+  public Rule(String name, String description, String json, String template, String sqlStr, String sqlPart) {
+    this.name = name;
+    this.description = description;
+    this.json = json;
+    this.template = template;
+    this.sqlStr = sqlStr;
+    this.sqlPart = sqlPart;
+  }
 
 }

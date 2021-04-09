@@ -1,4 +1,4 @@
-package com.nnk.springboot.domain;
+package com.nnk.springboot.model;
 
 import java.sql.Timestamp;
 import javax.persistence.Entity;
@@ -10,30 +10,28 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "bid")
-public class Bid {
+@Table(name = "trade")
+public class Trade {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer bidId;
+  private Integer tradeId;
 
   private String account;
 
   private String type;
 
-  private double bidQuantity;
+  private double buyQuantity;
 
-  private double askQuantity;
+  private double sellQuantity;
 
-  private double bid;
+  private double buyPrice;
 
-  private double ask;
+  private double sellPrice;
 
   private String benchMark;
 
-  private Timestamp bidListDate;
-
-  private String commentary;
+  private Timestamp tradeDate;
 
   private String security;
 
@@ -57,6 +55,5 @@ public class Bid {
 
   private String sourceListId;
 
-  private String sid;
-
+  private String side;
 }
