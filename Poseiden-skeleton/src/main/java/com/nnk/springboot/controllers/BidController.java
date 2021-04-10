@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Bid;
-import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +26,7 @@ public class BidController {
   }
 
   @PostMapping("/bidList/validate")
-  public String validate(@Valid Bid bid, BindingResult result, Model model) {
+  public String validate(Bid bid, BindingResult result, Model model) {
     // TODO: check data valid and save to db, after saving return bid list
     return "bidList/add";
   }
@@ -39,7 +38,7 @@ public class BidController {
   }
 
   @PostMapping("/bidList/update/{id}")
-  public String updateBid(@PathVariable("id") Integer id, @Valid Bid bid,
+  public String updateBid(@PathVariable("id") Integer id, Bid bid,
       BindingResult result, Model model) {
     // TODO: check required fields, if valid call service to update Bid and return
     // list Bid

@@ -59,4 +59,10 @@ public class Bid {
 
   private String sid;
 
+  public Bid(String account, String type, double bidQuantity) {
+    this.account = account;
+    this.type = type;
+    this.bidQuantity = bidQuantity;
+  }
+
 }

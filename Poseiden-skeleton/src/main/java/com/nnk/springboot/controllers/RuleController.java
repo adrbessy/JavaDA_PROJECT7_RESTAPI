@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Rule;
-import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,7 +25,7 @@ public class RuleController {
   }
 
   @PostMapping("/rule/validate")
-  public String validate(@Valid Rule rule, BindingResult result, Model model) {
+  public String validate(Rule rule, BindingResult result, Model model) {
     // TODO: check data valid and save to db, after saving return Rule list
     return "rule/add";
   }
@@ -38,7 +37,7 @@ public class RuleController {
   }
 
   @PostMapping("/rule/update/{id}")
-  public String updateRule(@PathVariable("id") Integer id, @Valid Rule rule,
+  public String updateRule(@PathVariable("id") Integer id, Rule rule,
       BindingResult result, Model model) {
     // TODO: check required fields, if valid call service to update RuleName and
     // return RuleName list
