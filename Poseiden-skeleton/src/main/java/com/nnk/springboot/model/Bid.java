@@ -15,7 +15,7 @@ public class Bid {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer bidId;
+  private Integer id;
 
   private String account;
 
@@ -29,7 +29,7 @@ public class Bid {
 
   private double ask;
 
-  private String benchMark;
+  private String benchmark;
 
   private Timestamp bidDate;
 
@@ -57,12 +57,11 @@ public class Bid {
 
   private String sourceId;
 
-  private String sid;
+  private String side;
 
-  public Bid(String account, String type, double bidQuantity) {
-    this.account = account;
-    this.type = type;
-    this.bidQuantity = bidQuantity;
-  }
+  /*
+   * public Bid(String account, String type, double bidQuantity) { this.account =
+   * account; this.type = type; this.bidQuantity = bidQuantity; }
+   */
 
 }

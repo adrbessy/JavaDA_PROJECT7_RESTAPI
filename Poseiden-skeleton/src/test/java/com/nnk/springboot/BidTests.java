@@ -8,6 +8,7 @@ import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.repositories.BidRepository;
 import java.util.List;
 import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,25 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class BidTests {
 
+  private Bid bid;
+
   @Autowired
   private BidRepository bidRepository;
 
+  @BeforeEach
+  private void setUp() {
+    bid = new Bid();
+    bid.setAccount("Account Test");
+    bid.setType("Type Test");
+    bid.setBidQuantity(10d);
+  }
+
   @Test
   public void bidListTest() {
-    Bid bid = new Bid("Account Test", "Type Test", 10d);
 
     // Save
     bid = bidRepository.save(bid);
-    assertNotNull(bid.getBidId());
+    assertNotNull(bid.getId());
     assertThat(bid.getBidQuantity()).isEqualTo(10d);
 
     // Update
@@ -40,7 +50,7 @@ public class BidTests {
     assertTrue(listResult.size() > 0);
 
     // Delete
-    Integer id = bid.getBidId();
+    Integer id = bid.getId();
     bidRepository.delete(bid);
     Optional<Bid> bidList = bidRepository.findById(id);
     assertFalse(bidList.isPresent());
