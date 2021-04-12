@@ -13,7 +13,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -102,6 +104,54 @@ public class BidRestController {
           "The bid with the id " + id + " doesn't exist.");
     }
     return bid;
+  }
+
+  /**
+   * Update an existing bid from a given id
+   * 
+   * @param id  An id
+   * @param bid A bid object with modifications
+   * @return The updated bid object
+   */
+  @PutMapping("/bid/{id}")
+  public Bid updateBid(@PathVariable("id") final Integer id,
+      @RequestBody Bid bid) {
+    Bid bidToUpdate = null;
+    boolean existingBidId = false;
+    try {
+      logger.info(
+          "Put request of the endpoint 'bid' with the id : {" + id + "}");
+      existingBidId = bidService.bidExist(id);
+      if (existingBidId) {
+        bidToUpdate = bidService.getBid(id);
+        logger.info(
+            "response following the Put on the endpoint 'bid' with the given id : {"
+                + id + "}");
+        if (bidToUpdate != null) {
+          String account = bid.getAccount();
+          if (account != null) {
+            bidToUpdate.setAccount(account);
+          }
+          String type = bid.getType();
+          if (type != null) {
+            bidToUpdate.setType(type);
+          }
+          double bidQuantity = bid.getBidQuantity();
+          if (bidQuantity != 0) {
+            bidToUpdate.setBidQuantity(bidQuantity);
+          }
+          bidService.saveBid(bidToUpdate);
+        }
+      }
+    } catch (Exception exception) {
+      logger.error("Error in the BidRestController in the method updateBid :"
+          + exception.getMessage());
+    }
+    if (!existingBidId) {
+      logger.error("The bid with the id " + id + " doesn't exist.");
+      throw new NonexistentException("The bid with the id " + id + " doesn't exist.");
+    }
+    return bidToUpdate;
   }
 
 }

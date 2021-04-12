@@ -90,4 +90,27 @@ public class BidServiceImpl implements BidService {
     return bid;
   }
 
+  /**
+   * Get a bid from an id
+   * 
+   * @param id The id of the bid table
+   * @return The bid
+   */
+  @Override
+  public Bid getBid(Integer id) {
+    logger.debug("in the method getBid in the class BidServiceImpl");
+    Optional<Bid> bid = null;
+    try {
+      bid = bidRepository.findById(id);
+    } catch (Exception exception) {
+      logger.error("Error in the method getBid :" + exception.getMessage());
+    }
+    if (bid.isPresent()) {
+      Bid bidToUpdate = bid.get();
+      return bidToUpdate;
+    } else {
+      return null;
+    }
+  }
+
 }

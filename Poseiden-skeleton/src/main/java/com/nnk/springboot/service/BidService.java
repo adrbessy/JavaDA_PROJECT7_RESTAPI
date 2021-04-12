@@ -37,4 +37,12 @@ public interface BidService {
    */
   Optional<Bid> deleteBid(Integer id);
 
+  /**
+   * Get a bid from an id
+   * 
+   * @param id The id of the bid table
+   * @return The bid
+   */
+  Bid getBid(Integer id);
+
 }
