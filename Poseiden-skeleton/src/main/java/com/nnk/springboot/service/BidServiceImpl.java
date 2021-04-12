@@ -34,4 +34,22 @@ public class BidServiceImpl implements BidService {
     return bidList;
   }
 
+  /**
+   * Save a bid
+   * 
+   * @param bid A bid to save
+   * @return the saved bid
+   */
+  @Override
+  public Bid saveBid(Bid bid) {
+    logger.debug("in the method saveBid in the class BidServiceImpl");
+    Bid savedBid = null;
+    try {
+      savedBid = bidRepository.save(bid);
+    } catch (Exception exception) {
+      logger.error("Error when we try to save a bid :" + exception.getMessage());
+    }
+    return savedBid;
+  }
+
 }

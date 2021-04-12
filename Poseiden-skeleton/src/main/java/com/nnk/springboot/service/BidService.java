@@ -12,4 +12,12 @@ public interface BidService {
    */
   List<Bid> getBids();
 
+  /**
+   * Save a bid
+   * 
+   * @param bid A bid to save
+   * @return the saved bid
+   */
+  Bid saveBid(Bid bid);
+
 }
