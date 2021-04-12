@@ -1,16 +1,21 @@
 package com.nnk.springboot.controllers;
 
+
 import com.nnk.springboot.exceptions.IsForbiddenException;
+import com.nnk.springboot.exceptions.NonexistentException;
 import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.service.BidService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -66,6 +71,37 @@ public class BidRestController {
           + exception.getMessage());
     }
     return newBid;
+  }
+
+  /**
+   * Delete - Delete a bid
+   * 
+   * @param emailAddress An email address
+   * @param iban         An iban
+   * @return - The deleted bank account
+   */
+  @DeleteMapping("/bid")
+  public Optional<Bid> deleteBid(@RequestParam Integer id) {
+    Optional<Bid> bid = null;
+    boolean existingBid = false;
+    try {
+      logger.info("Delete request with the endpoint 'bid'");
+      existingBid = bidService.bidExist(id);
+      if (existingBid) {
+        bid = bidService.deleteBid(id);
+        logger.info(
+            "response following the DELETE on the endpoint 'bid'.");
+      }
+    } catch (Exception exception) {
+      logger.error("Error in the BidRestController in the method deleteBid :"
+          + exception.getMessage());
+    }
+    if (!existingBid) {
+      logger.error("The bid with the id " + id + " doesn't exist.");
+      throw new NonexistentException(
+          "The bid with the id " + id + " doesn't exist.");
+    }
+    return bid;
   }
 
 }

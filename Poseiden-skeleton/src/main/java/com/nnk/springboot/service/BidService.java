@@ -2,6 +2,7 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.model.Bid;
 import java.util.List;
+import java.util.Optional;
 
 public interface BidService {
 
@@ -19,5 +20,21 @@ public interface BidService {
    * @return the saved bid
    */
   Bid saveBid(Bid bid);
+
+  /**
+   * Check if the given bid id exists.
+   * 
+   * @param id The bid id
+   * @return true if the id exists, otherwise returns false
+   */
+  boolean bidExist(Integer id);
+
+  /**
+   * Delete a bid
+   * 
+   * @param id An id
+   * @return the deleted bid
+   */
+  Optional<Bid> deleteBid(Integer id);
 
 }
