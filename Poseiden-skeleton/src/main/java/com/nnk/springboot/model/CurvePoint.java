@@ -14,7 +14,7 @@ import lombok.Data;
 public class CurvePoint {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   private Integer curveId;
@@ -26,11 +26,5 @@ public class CurvePoint {
   private double value;
 
   private Timestamp creationDate;
-
-  public CurvePoint(Integer curveId, double term, double value) {
-    this.curveId = curveId;
-    this.term = term;
-    this.value = value;
-  }
 
 }

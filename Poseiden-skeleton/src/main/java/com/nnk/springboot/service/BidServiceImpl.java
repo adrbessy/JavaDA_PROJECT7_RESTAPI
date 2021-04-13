@@ -25,7 +25,7 @@ public class BidServiceImpl implements BidService {
    */
   @Override
   public List<Bid> getBids() {
-    logger.debug("in the method getBankAccounts in the class BankAccountServiceImpl");
+    logger.debug("in the method getBids in the class BidServiceImpl");
     List<Bid> bidList = new ArrayList<>();
     try {
       bidList = bidRepository.findAll();
@@ -61,7 +61,7 @@ public class BidServiceImpl implements BidService {
    */
   @Override
   public boolean bidExist(Integer id) {
-    logger.debug("in the method bidtExist in the class BidServiceImpl");
+    logger.debug("in the method bidExist in the class BidServiceImpl");
     boolean bidExist = false;
     try {
       bidExist = bidRepository.existsById(id);
@@ -85,7 +85,7 @@ public class BidServiceImpl implements BidService {
       bid = bidRepository.findById(id);
       bidRepository.deleteById(id);
     } catch (Exception exception) {
-      logger.error("Error in the method deleteMyBankAccount :" + exception.getMessage());
+      logger.error("Error in the method deleteBid :" + exception.getMessage());
     }
     return bid;
   }

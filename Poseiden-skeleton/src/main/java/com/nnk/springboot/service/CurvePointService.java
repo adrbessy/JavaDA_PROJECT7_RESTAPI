@@ -22,26 +22,26 @@ public interface CurvePointService {
   CurvePoint saveCurvePoint(CurvePoint curvePoint);
 
   /**
-   * Check if the given bid id exists.
+   * Check if the given curve point id exists.
    * 
-   * @param id The bid id
+   * @param id The curve point id
    * @return true if the id exists, otherwise returns false
    */
   boolean curvePointExist(Integer id);
 
   /**
-   * Delete a bid
+   * Delete a curve point
    * 
    * @param id An id
-   * @return the deleted bid
+   * @return the deleted curve point
    */
   Optional<CurvePoint> deleteCurvePoint(Integer id);
 
   /**
-   * Get a bid from an id
+   * Get a curve point from an id
    * 
-   * @param id The id of the bid table
-   * @return The bid
+   * @param id The id of the curve point table
+   * @return The curve point
    */
   CurvePoint getCurvePoint(Integer id);
 
