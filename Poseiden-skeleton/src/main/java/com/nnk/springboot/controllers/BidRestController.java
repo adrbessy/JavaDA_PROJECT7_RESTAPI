@@ -58,9 +58,9 @@ public class BidRestController {
   public Bid createBid(@RequestBody Bid bid) {
     Bid newBid = null;
     if (bid.getAccount() == null || bid.getType() == null) {
-      logger.error("The new bid has to get an account with an type.");
+      logger.error("The new bid has to get an account with a type.");
       throw new IsForbiddenException(
-          "The new bid has to get an account with an type.");
+          "The new bid has to get an account with a type.");
     }
     try {
       logger.info("Post request with the endpoint 'bid'");
@@ -78,9 +78,8 @@ public class BidRestController {
   /**
    * Delete - Delete a bid
    * 
-   * @param emailAddress An email address
-   * @param iban         An iban
-   * @return - The deleted bank account
+   * @param id An id
+   * @return - The deleted bid
    */
   @DeleteMapping("/bid")
   public Optional<Bid> deleteBid(@RequestParam Integer id) {
