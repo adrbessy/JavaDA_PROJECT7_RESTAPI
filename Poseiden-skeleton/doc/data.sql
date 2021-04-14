@@ -81,7 +81,7 @@ CREATE SEQUENCE public.rating_id_seq;
 CREATE TABLE Rating (
   id SMALLINT NOT NULL DEFAULT nextval('public.rating_id_seq'),
   moodys_rating VARCHAR(125),
-  sand_p_rating VARCHAR(125),
+  sandp_rating VARCHAR(125),
   fitch_rating VARCHAR(125),
   order_number SMALLINT DEFAULT 0,
 

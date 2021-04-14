@@ -1,6 +1,5 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.exceptions.IsForbiddenException;
 import com.nnk.springboot.exceptions.NonexistentException;
 import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.service.RatingService;
@@ -56,11 +55,6 @@ public class RatingRestController {
   @PostMapping("/rating")
   public Rating createRating(@RequestBody Rating rating) {
     Rating newRating = null;
-    if (rating.getId() == null) {
-      logger.error("The new rating has to get an id.");
-      throw new IsForbiddenException(
-          "The new rating has to get an id.");
-    }
     try {
       logger.info("Post request with the endpoint 'rating'");
       newRating = ratingService.saveRating(rating);
@@ -130,9 +124,9 @@ public class RatingRestController {
           if (moodysRating != null) {
             ratingToUpdate.setMoodysRating(moodysRating);
           }
-          String sandPRating = rating.getSandPRating();
-          if (sandPRating != null) {
-            ratingToUpdate.setSandPRating(sandPRating);
+          String sandpRating = rating.getSandpRating();
+          if (sandpRating != null) {
+            ratingToUpdate.setSandpRating(sandpRating);
           }
           String fitchRating = rating.getFitchRating();
           if (fitchRating != null) {
