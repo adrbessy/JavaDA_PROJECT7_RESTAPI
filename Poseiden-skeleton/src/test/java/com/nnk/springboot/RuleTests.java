@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,12 +16,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class RuleTests {
 
+  private Rule rule;
+
   @Autowired
   private RuleRepository ruleNameRepository;
 
+  @BeforeEach
+  private void setUp() {
+    rule = new Rule();
+    rule.setName("Rule Name");
+    rule.setDescription("Description");
+    rule.setJson("Json");
+    rule.setTemplate("Template");
+    rule.setSqlStr("SQL");
+    rule.setSqlPart("SQL Part");
+  }
+
   @Test
   public void ruleTest() {
-    Rule rule = new Rule("Rule Name", "Description", "Json", "Template", "SQL", "SQL Part");
 
     // Save
     rule = ruleNameRepository.save(rule);
