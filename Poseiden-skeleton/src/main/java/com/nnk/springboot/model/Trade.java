@@ -14,8 +14,8 @@ import lombok.Data;
 public class Trade {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer tradeId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
   private String account;
 
@@ -29,7 +29,7 @@ public class Trade {
 
   private double sellPrice;
 
-  private String benchMark;
+  private String benchmark;
 
   private Timestamp tradeDate;
 
@@ -56,10 +56,5 @@ public class Trade {
   private String sourceListId;
 
   private String side;
-
-  public Trade(String account, String type) {
-    this.account = account;
-    this.type = type;
-  }
 
 }
