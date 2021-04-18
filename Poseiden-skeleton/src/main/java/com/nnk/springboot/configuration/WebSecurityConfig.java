@@ -18,8 +18,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-        .withUser("admin").password(passwordEncoder().encode("admin123")).roles("USER", "ADMIN");
 
     auth.authenticationProvider(authenticationProvider());
   }
@@ -36,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .formLogin()
         .loginPage("/login")
         .usernameParameter("username")
-        .defaultSuccessUrl("/user")
+        .defaultSuccessUrl("/bidList/list")
         .permitAll()
         .and().logout().logoutSuccessUrl("/").permitAll();
   }

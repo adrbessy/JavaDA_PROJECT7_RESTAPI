@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class RuleController {
-  // TODO: Inject RuleName service
+  // TODO: Inject Rule service
 
   @RequestMapping("/rule/list")
   public String home(Model model) {
@@ -39,14 +39,14 @@ public class RuleController {
   @PostMapping("/rule/update/{id}")
   public String updateRule(@PathVariable("id") Integer id, Rule rule,
       BindingResult result, Model model) {
-    // TODO: check required fields, if valid call service to update RuleName and
-    // return RuleName list
-    return "redirect:/ruleName/list";
+    // TODO: check required fields, if valid call service to update Rule and
+    // return Rule list
+    return "redirect:/rule/list";
   }
 
-  @GetMapping("/ruleName/delete/{id}")
+  @GetMapping("/rule/delete/{id}")
   public String deleteRule(@PathVariable("id") Integer id, Model model) {
-    // TODO: Find Rule by Id and delete the RuleName, return to Rule list
+    // TODO: Find Rule by Id and delete the Rule, return to Rule list
     return "redirect:/rule/list";
   }
 }
