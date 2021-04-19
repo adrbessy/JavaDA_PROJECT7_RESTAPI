@@ -18,7 +18,26 @@
 			<!--
 			TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint
 			 -->
+		   		<div class="form-group">
+					<input
+						type="text" th:field="*{curveId}" class="form-control" id="curveIdInput"
+						aria-describedby="curveId" placeholder="Curve Id">
+				</div>
+				<div class="form-group">
+					<input
+						type="text" th:field="*{term}" class="form-control" id="termInput"
+						aria-describedby="tyerm" placeholder="Term">
+				</div>
 
+		   		<div class="form-group">
+					<input
+						type="text" th:field="*{value}" class="form-control" id="valueInput"
+						aria-describedby="value" placeholder="Value">
+				</div>
+				<div class="col-sm text-center pt-2">
+					<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>
+			   		<button type="submit" class="btn bg-success text-white px-5 font-weight-bold">Add Curve Point</button>
+			   </div>
 		</form>
 	</div>
 

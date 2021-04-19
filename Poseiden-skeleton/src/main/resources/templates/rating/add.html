@@ -18,7 +18,32 @@
 			<!--
 			TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
 			 -->
+	   		<div class="form-group">
+				<input
+					type="text" th:field="*{moodysRating}" class="form-control" id="moodysRatingInput"
+					aria-describedby="moodysRating" placeholder="Moodys rating">
+			</div>
+			<div class="form-group">
+				<input
+					type="text" th:field="*{sandpRating}" class="form-control" id="sandpRatingInput"
+					aria-describedby="sandpRating" placeholder="sandP rating">
+			</div>
 
+	   		<div class="form-group">
+				<input
+					type="text" th:field="*{fitchRating}" class="form-control" id="fitchRatingInput"
+					aria-describedby="fitchRating" placeholder="Fitch rating">
+			</div>
+			<div class="form-group">
+				<input
+					type="text" th:field="*{orderNumber}" class="form-control" id="orderNumberInput"
+					aria-describedby="orderNumber" placeholder="Order">
+			</div>
+			
+			<div class="col-sm text-center pt-2">
+				<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>
+		   		<button type="submit" class="btn bg-success text-white px-5 font-weight-bold">Add Rating</button>
+		   </div>
 		</form>
 	</div>
 
