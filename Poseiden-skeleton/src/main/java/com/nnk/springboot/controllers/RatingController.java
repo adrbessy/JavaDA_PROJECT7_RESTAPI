@@ -1,6 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Rating;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RatingController {
   // TODO: Inject Rating service
 
+  @Autowired
+  private RatingRestController ratingRestController;
+
   @RequestMapping("/rating/list")
   public String home(Model model) {
-    // TODO: find all Rating, add to model
+    List<Rating> ratingList = ratingRestController.getRatings();
+    model.addAttribute("ratingList", ratingList);
     return "rating/list";
   }
 
