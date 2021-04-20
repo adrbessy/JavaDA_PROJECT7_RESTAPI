@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Bid;
-import com.nnk.springboot.service.BidService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BidController {
-  @Autowired
-  private BidService bidService;
 
   @Autowired
   private BidRestController bidRestController;
@@ -41,9 +38,8 @@ public class BidController {
 
   @GetMapping("/bidList/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    Bid bidToUpdate = bidService.getBid(id);
     Bid newBid = new Bid();
-    model.addAttribute("bidToUpdate", bidToUpdate);
+    model.addAttribute("id", id);
     model.addAttribute("newBid", newBid);
     return "bidList/update";
   }
@@ -51,8 +47,6 @@ public class BidController {
   @PostMapping("/bidList/update/{id}")
   public String updateBid(@PathVariable("id") Integer id, Bid bid,
       BindingResult result, Model model) {
-    // TODO: check required fields, if valid call service to update Bid and return
-    // list Bid
     Bid updatedBid = bidRestController.updateBid(id, bid);
     return "redirect:/bidList/list";
   }

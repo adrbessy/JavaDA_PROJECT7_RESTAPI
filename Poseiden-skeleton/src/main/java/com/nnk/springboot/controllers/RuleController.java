@@ -38,15 +38,16 @@ public class RuleController {
 
   @GetMapping("/rule/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    // TODO: get Rule by Id and to model then show to the form
+    Rule newRule = new Rule();
+    model.addAttribute("id", id);
+    model.addAttribute("newRule", newRule);
     return "rule/update";
   }
 
   @PostMapping("/rule/update/{id}")
   public String updateRule(@PathVariable("id") Integer id, Rule rule,
       BindingResult result, Model model) {
-    // TODO: check required fields, if valid call service to update Rule and
-    // return Rule list
+    Rule updatedRule = ruleRestController.updateRule(id, rule);
     return "redirect:/rule/list";
   }
 

@@ -14,11 +14,51 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/ruleName/update/{id}(id=${ruleName.id})}" th:object="${ruleName}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of RuleName, there are 2 buttons: Update data and Cancel to the RuleName
-			 -->
-
+		<form action="#" th:action="@{/rule/update/{id}(id=${id})}" th:object="${newRule}" method="post" class="form-horizontal" style="width: 100%">
+			<div class="form-group">
+				<label for="moodysRatingInput">name</label> 
+				<input
+					type="text" th:field="*{name}" class="form-control" id="moodysRatingInput"
+					aria-describedby="moodysRatingHelp" placeholder="name"> 
+			</div>
+			
+			<div class="form-group">
+				<label for="typeInput">description</label> 
+				<input
+					type="text" th:field="*{description}" class="form-control" id="sandpRatingInput"
+					aria-describedby="sandpRatingHelp" placeholder="description"> 
+			</div>
+			
+			<div class="form-group">
+				<label for="fitchRatingInput">json</label> 
+				<input
+					type="text" th:field="*{json}" class="form-control" id="fitchRatingInput"
+					aria-describedby="fitchRatingHelp" placeholder="json"> 
+			</div>
+			
+			<div class="form-group">
+				<label for="orderNumberInput">template</label> 
+				<input
+					type="text" th:field="*{template}" class="form-control" id="orderNumberInput"
+					aria-describedby="orderNumberHelp" placeholder="template"> 
+			</div>
+			
+			<div class="form-group">
+				<label for="orderNumberInput">sqlStr</label> 
+				<input
+					type="text" th:field="*{sqlStr}" class="form-control" id="orderNumberInput"
+					aria-describedby="orderNumberHelp" placeholder="sqlStr"> 
+			</div>
+			
+			<div class="form-group">
+				<label for="orderNumberInput">sqlPart</label> 
+				<input
+					type="text" th:field="*{sqlPart}" class="form-control" id="orderNumberInput"
+					aria-describedby="orderNumberHelp" placeholder="sqlPart"> 
+			</div>
+			
+			<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>
+			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
 	</div>
 

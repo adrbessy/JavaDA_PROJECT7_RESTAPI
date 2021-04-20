@@ -38,7 +38,9 @@ public class CurvePointController {
 
   @GetMapping("/curvePoint/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    // TODO: get CurvePoint by Id and to model then show to the form
+    CurvePoint newCurvePoint = new CurvePoint();
+    model.addAttribute("id", id);
+    model.addAttribute("newCurvePoint", newCurvePoint);
     return "curvePoint/update";
   }
 
@@ -47,6 +49,7 @@ public class CurvePointController {
       BindingResult result, Model model) {
     // TODO: check required fields, if valid call service to update Curve and return
     // Curve list
+    CurvePoint updatedCurvePoint = curvePointRestController.updateCurvePoint(id, curvePoint);
     return "redirect:/curvePoint/list";
   }
 

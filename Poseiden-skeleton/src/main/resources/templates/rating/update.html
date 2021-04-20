@@ -14,10 +14,33 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/rating/update/{id}(id=${rating.id})}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of Rating, there are 2 buttons: Update data and Cancel to the Rating
-			 -->
+		<form action="#" th:action="@{/rating/update/{id}(id=${id})}" th:object="${newRating}" method="post" class="form-horizontal" style="width: 100%">
+			<div class="form-group">
+				<label for="moodysRatingInput">moodysRating</label> 
+				<input
+					type="text" th:field="*{moodysRating}" class="form-control" id="moodysRatingInput"
+					aria-describedby="moodysRatingHelp" placeholder="moodys Rating"> 
+			</div>
+			<div class="form-group">
+				<label for="typeInput">sandpRating</label> 
+				<input
+					type="text" th:field="*{sandpRating}" class="form-control" id="sandpRatingInput"
+					aria-describedby="sandpRatingHelp" placeholder="sandp Rating"> 
+			</div>
+			<div class="form-group">
+				<label for="fitchRatingInput">fitchRating</label> 
+				<input
+					type="text" th:field="*{fitchRating}" class="form-control" id="fitchRatingInput"
+					aria-describedby="fitchRatingHelp" placeholder="fitch Rating"> 
+			</div>
+			<div class="form-group">
+				<label for="orderNumberInput">order Number</label> 
+				<input
+					type="text" th:field="*{orderNumber}" class="form-control" id="orderNumberInput"
+					aria-describedby="orderNumberHelp" placeholder="order Number"> 
+			</div>
+			<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>
+			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
 	</div>
 

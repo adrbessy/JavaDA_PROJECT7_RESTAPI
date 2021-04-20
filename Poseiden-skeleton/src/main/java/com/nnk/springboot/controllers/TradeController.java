@@ -37,15 +37,16 @@ public class TradeController {
 
   @GetMapping("/trade/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    // TODO: get Trade by Id and to model then show to the form
+    Trade newTrade = new Trade();
+    model.addAttribute("id", id);
+    model.addAttribute("newTrade", newTrade);
     return "trade/update";
   }
 
   @PostMapping("/trade/update/{id}")
   public String updateTrade(@PathVariable("id") Integer id, Trade trade,
       BindingResult result, Model model) {
-    // TODO: check required fields, if valid call service to update Trade and return
-    // Trade list
+    Trade updatedTrade = tradeRestController.updateTrade(id, trade);
     return "redirect:/trade/list";
   }
 

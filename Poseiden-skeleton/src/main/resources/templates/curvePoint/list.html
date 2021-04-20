@@ -39,11 +39,11 @@
 				</tr>
 				<tr th:each="curvePoint: ${curvePointList}">
 					<td><span th:text="${curvePoint.id}"> Id </span></td>
-					<td><span th:text="${curvePoint.curvePointId}"> CurvePoint Id </span></td>
+					<td><span th:text="${curvePoint.curveId}"> Curve Id </span></td>
 					<td><span th:text="${curvePoint.term}"> Term </span></td>
 					<td><span th:text="${curvePoint.Value}"> Value </span></td>
 					<td>
-						<a th:href="@{/editCurvePoint(id=${curvePoint.id})}"><button class="btn">Edit</button></a>		
+						<a th:href="@{/curvePoint/update/{id}(id=${curvePoint.id})}"><button class="btn">Edit</button></a>		
 						<a th:href="@{/deleteCurvePoint(id=${curvePoint.id})}"><button class="btn btn-danger">Delete</button></a>						
 					</td>
 				</tr>

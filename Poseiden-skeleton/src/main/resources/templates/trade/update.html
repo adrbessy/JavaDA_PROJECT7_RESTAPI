@@ -13,10 +13,27 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/trade/update/{id}(id=${trade.tradeId})}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of Trade, there are 2 buttons: Update data and Cancel to the Trade List
-			 -->
+		<form action="#" th:action="@{/trade/update/{id}(id=${id})}" th:object="${newTrade}" method="post" class="form-horizontal" style="width: 100%">
+			<div class="form-group">
+				<label for="accountInput">Account</label> 
+				<input
+					type="text" th:field="*{account}" class="form-control" id="accountInput"
+					aria-describedby="accountHelp" placeholder="Account Name"> 
+			</div>
+			<div class="form-group">
+				<label for="typeInput">Type</label> 
+				<input
+					type="text" th:field="*{type}" class="form-control" id="typeInput"
+					aria-describedby="lastNameHelp" placeholder="Account Type"> 
+			</div>
+			<div class="form-group">
+				<label for="bidQuantitylInput">Buy quantity</label> 
+				<input
+					type="text" th:field="*{buyQuantity}" class="form-control" id="bidQuantityInput"
+					aria-describedby="mailHelp" placeholder="Buy quantity"> 
+			</div>
+			<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>
+			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
 	</div>
 

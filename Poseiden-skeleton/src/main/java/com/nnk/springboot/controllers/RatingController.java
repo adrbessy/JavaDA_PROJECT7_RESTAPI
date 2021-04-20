@@ -38,15 +38,16 @@ public class RatingController {
 
   @GetMapping("/rating/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    // TODO: get Rating by Id and to model then show to the form
+    Rating newRating = new Rating();
+    model.addAttribute("id", id);
+    model.addAttribute("newRating", newRating);
     return "rating/update";
   }
 
   @PostMapping("/rating/update/{id}")
   public String updateRating(@PathVariable("id") Integer id, Rating rating,
       BindingResult result, Model model) {
-    // TODO: check required fields, if valid call service to update Rating and
-    // return Rating list
+    Rating updatedRating = ratingRestController.updateRating(id, rating);
     return "redirect:/rating/list";
   }
 
