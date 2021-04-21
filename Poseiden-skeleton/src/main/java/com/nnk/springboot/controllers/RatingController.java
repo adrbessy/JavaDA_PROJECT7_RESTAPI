@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class RatingController {
@@ -31,9 +32,9 @@ public class RatingController {
   }
 
   @PostMapping("/rating/validate")
-  public String validate(Rating rating, BindingResult result, Model model) {
-    // TODO: check data valid and save to db, after saving return Rating list
-    return "rating/add";
+  public ModelAndView validate(Rating rating, BindingResult result, Model model) {
+    ratingRestController.createRating(rating);
+    return new ModelAndView("redirect:/rating/list");
   }
 
   @GetMapping("/rating/update/{id}")
@@ -52,8 +53,8 @@ public class RatingController {
   }
 
   @GetMapping("/rating/delete/{id}")
-  public String deleteRating(@PathVariable("id") Integer id, Model model) {
-    // TODO: Find Rating by Id and delete the Rating, return to Rating list
-    return "redirect:/rating/list";
+  public ModelAndView deleteRating(@PathVariable("id") Integer id, Model model) {
+    ratingRestController.deleteRating(id);
+    return new ModelAndView("redirect:/rating/list");
   }
 }

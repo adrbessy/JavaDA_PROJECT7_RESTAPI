@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TradeController {
@@ -30,9 +31,9 @@ public class TradeController {
   }
 
   @PostMapping("/trade/validate")
-  public String validate(Trade trade, BindingResult result, Model model) {
-    // TODO: check data valid and save to db, after saving return Trade list
-    return "trade/add";
+  public ModelAndView validate(Trade trade, BindingResult result, Model model) {
+    tradeRestController.createTrade(trade);
+    return new ModelAndView("redirect:/trade/list");
   }
 
   @GetMapping("/trade/update/{id}")
@@ -51,8 +52,8 @@ public class TradeController {
   }
 
   @GetMapping("/trade/delete/{id}")
-  public String deleteTrade(@PathVariable("id") Integer id, Model model) {
-    // TODO: Find Trade by Id and delete the Trade, return to Trade list
-    return "redirect:/trade/list";
+  public ModelAndView deleteTrade(@PathVariable("id") Integer id, Model model) {
+    tradeRestController.deleteTrade(id);
+    return new ModelAndView("redirect:/trade/list");
   }
 }

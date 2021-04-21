@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class RuleController {
@@ -31,9 +32,9 @@ public class RuleController {
   }
 
   @PostMapping("/rule/validate")
-  public String validate(Rule rule, BindingResult result, Model model) {
-    // TODO: check data valid and save to db, after saving return Rule list
-    return "rule/add";
+  public ModelAndView validate(Rule rule, BindingResult result, Model model) {
+    ruleRestController.createRule(rule);
+    return new ModelAndView("redirect:/rule/list");
   }
 
   @GetMapping("/rule/update/{id}")
@@ -52,8 +53,8 @@ public class RuleController {
   }
 
   @GetMapping("/rule/delete/{id}")
-  public String deleteRule(@PathVariable("id") Integer id, Model model) {
-    // TODO: Find Rule by Id and delete the Rule, return to Rule list
-    return "redirect:/rule/list";
+  public ModelAndView deleteRule(@PathVariable("id") Integer id, Model model) {
+    ruleRestController.deleteRule(id);
+    return new ModelAndView("redirect:/rule/list");
   }
 }

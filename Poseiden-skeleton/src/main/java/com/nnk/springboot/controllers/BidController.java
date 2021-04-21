@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -31,9 +32,10 @@ public class BidController {
   }
 
   @PostMapping("/bidList/validate")
-  public String validate(Bid bid, BindingResult result, Model model) {
+  public ModelAndView validate(Bid bid, BindingResult result, Model model) {
     // TODO: check data valid and save to db, after saving return bid list
-    return "bidList/add";
+    bidRestController.createBid(bid);
+    return new ModelAndView("redirect:/bidList/list");
   }
 
   @GetMapping("/bidList/update/{id}")
@@ -52,8 +54,9 @@ public class BidController {
   }
 
   @GetMapping("/bidList/delete/{id}")
-  public String deleteBid(@PathVariable("id") Integer id, Model model) {
+  public ModelAndView deleteBid(@PathVariable("id") Integer id, Model model) {
     // TODO: Find Bid by Id and delete the bid, return to Bid list
-    return "redirect:/bidList/list";
+    bidRestController.deleteBid(id);
+    return new ModelAndView("redirect:/bidList/list");
   }
 }

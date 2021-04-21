@@ -44,7 +44,7 @@
 					<td><span th:text="${bid.bidQuantity}"> Bid quantity </span></td>
 					<td>
 						<a th:href="@{/bidList/update/{id}(id=${bid.id})}"><button class="btn">Edit</button></a>		
-						<a th:href="@{/deleteBid(id=${bid.id})}"><button class="btn btn-danger">Delete</button></a>						
+						<a th:href="@{/bidList/delete/{id}(id=${bid.id})}"><button class="btn btn-danger">Delete</button></a>						
 					</td>
 				</tr>
 			</tbody>

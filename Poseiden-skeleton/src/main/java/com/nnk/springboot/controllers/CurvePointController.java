@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CurvePointController {
@@ -31,9 +32,9 @@ public class CurvePointController {
   }
 
   @PostMapping("/curvePoint/validate")
-  public String validate(CurvePoint curvePoint, BindingResult result, Model model) {
-    // TODO: check data valid and save to db, after saving return Curve list
-    return "curvePoint/add";
+  public ModelAndView validate(CurvePoint curvePoint, BindingResult result, Model model) {
+    curvePointRestController.createCurvePoint(curvePoint);
+    return new ModelAndView("redirect:/curvePoint/list");
   }
 
   @GetMapping("/curvePoint/update/{id}")
@@ -54,8 +55,8 @@ public class CurvePointController {
   }
 
   @GetMapping("/curvePoint/delete/{id}")
-  public String deleteBid(@PathVariable("id") Integer id, Model model) {
-    // TODO: Find Curve by Id and delete the Curve, return to Curve list
-    return "redirect:/curvePoint/list";
+  public ModelAndView deleteBid(@PathVariable("id") Integer id, Model model) {
+    curvePointRestController.deleteCurvePoint(id);
+    return new ModelAndView("redirect:/curvePoint/list");
   }
 }
