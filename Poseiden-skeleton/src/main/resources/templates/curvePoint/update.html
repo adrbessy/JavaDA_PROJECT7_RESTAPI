@@ -17,19 +17,19 @@
 			<div class="form-group">
 				<label for="curveIdInput">curveId</label> 
 				<input
-					type="text" th:field="*{curveId}" class="form-control" id="curveIdInput"
-					aria-describedby="curveIdHelp" placeholder="curve Id">
+					type="number" th:field="*{curveId}" class="form-control" id="curveIdInput"
+					aria-describedby="curveIdHelp" placeholder="curve Id" required>
 			</div>
 			<div class="form-group">
 				<label for="termInput">Term</label> 
 				<input
-					type="text" th:field="*{term}" class="form-control" id="termInput"
+					type="number" th:field="*{term}" class="form-control" id="termInput"
 					aria-describedby="termHelp" placeholder="Term">
 			</div>
 			<div class="form-group">
 				<label for="valueInput">Value</label> 
 				<input
-					type="text" th:field="*{value}" class="form-control" id="valueInput"
+					type="number" th:field="*{value}" class="form-control" id="valueInput"
 					aria-describedby="mailHelp" placeholder="Value"> 
 			</div>
 			<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>

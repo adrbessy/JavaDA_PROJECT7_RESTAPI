@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.User;
 import com.nnk.springboot.repositories.UserRepository;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class UserController {
   }
 
   @PostMapping("/user/validate")
-  public String validate(User user, BindingResult result, Model model) {
+  public String validate(@Valid User user, BindingResult result, Model model) {
     if (!result.hasErrors()) {
       BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
       user.setPassword(encoder.encode(user.getPassword()));

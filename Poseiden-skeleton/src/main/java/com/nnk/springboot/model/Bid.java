@@ -1,5 +1,6 @@
 package com.nnk.springboot.model;
 
+import com.sun.istack.NotNull;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,10 @@ public class Bid {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
+  @NotNull
   private String account;
 
+  @NotNull
   private String type;
 
   private double bidQuantity;

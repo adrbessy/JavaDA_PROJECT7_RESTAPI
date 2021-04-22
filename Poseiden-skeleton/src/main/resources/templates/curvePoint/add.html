@@ -20,18 +20,18 @@
 			 -->
 		   		<div class="form-group">
 					<input
-						type="text" th:field="*{curveId}" class="form-control" id="curveIdInput"
-						aria-describedby="curveId" placeholder="Curve Id">
+						type="number" th:field="*{curveId}" class="form-control" id="curveIdInput"
+						aria-describedby="curveId" placeholder="Curve Id" required>
 				</div>
 				<div class="form-group">
 					<input
-						type="text" th:field="*{term}" class="form-control" id="termInput"
+						type="number" th:field="*{term}" class="form-control" id="termInput"
 						aria-describedby="tyerm" placeholder="Term">
 				</div>
 
 		   		<div class="form-group">
 					<input
-						type="text" th:field="*{value}" class="form-control" id="valueInput"
+						type="number" th:field="*{value}" class="form-control" id="valueInput"
 						aria-describedby="value" placeholder="Value">
 				</div>
 				<div class="col-sm text-center pt-2">
