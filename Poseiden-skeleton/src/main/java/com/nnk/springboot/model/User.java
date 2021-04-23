@@ -7,9 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@EqualsAndHashCode
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
