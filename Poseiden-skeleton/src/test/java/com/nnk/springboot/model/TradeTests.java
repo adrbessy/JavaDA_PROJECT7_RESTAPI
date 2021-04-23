@@ -1,18 +1,18 @@
-package com.nnk.springboot;
+package com.nnk.springboot.model;
 
-import com.nnk.springboot.model.Trade;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.nnk.springboot.repositories.TradeRepository;
 import java.util.List;
 import java.util.Optional;
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class TradeTests {
 
@@ -33,22 +33,28 @@ public class TradeTests {
 
     // Save
     trade = tradeRepository.save(trade);
-    Assert.assertNotNull(trade.getId());
-    Assert.assertTrue(trade.getAccount().equals("Trade Account"));
+    assertNotNull(trade.getId());
+    assertTrue(trade.getAccount().equals("Trade Account"));
 
     // Update
     trade.setAccount("Trade Account Update");
     trade = tradeRepository.save(trade);
-    Assert.assertTrue(trade.getAccount().equals("Trade Account Update"));
+    assertTrue(trade.getAccount().equals("Trade Account Update"));
 
     // Find
     List<Trade> listResult = tradeRepository.findAll();
-    Assert.assertTrue(listResult.size() > 0);
+    assertTrue(listResult.size() > 0);
 
     // Delete
     Integer id = trade.getId();
     tradeRepository.delete(trade);
     Optional<Trade> tradeList = tradeRepository.findById(id);
-    Assert.assertFalse(tradeList.isPresent());
+    assertFalse(tradeList.isPresent());
   }
+
+  @Test
+  public void simpleEqualsTrade() {
+    EqualsVerifier.forClass(Trade.class).suppress(Warning.ALL_FIELDS_SHOULD_BE_USED).verify();
+  }
+
 }

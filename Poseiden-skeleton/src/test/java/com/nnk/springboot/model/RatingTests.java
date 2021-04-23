@@ -1,18 +1,18 @@
-package com.nnk.springboot;
+package com.nnk.springboot.model;
 
-import com.nnk.springboot.model.Rating;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.nnk.springboot.repositories.RatingRepository;
 import java.util.List;
 import java.util.Optional;
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class RatingTests {
 
@@ -35,22 +35,28 @@ public class RatingTests {
 
     // Save
     rating = ratingRepository.save(rating);
-    Assert.assertNotNull(rating.getId());
-    Assert.assertTrue(rating.getOrderNumber() == 10);
+    assertNotNull(rating.getId());
+    assertTrue(rating.getOrderNumber() == 10);
 
     // Update
     rating.setOrderNumber(20);
     rating = ratingRepository.save(rating);
-    Assert.assertTrue(rating.getOrderNumber() == 20);
+    assertTrue(rating.getOrderNumber() == 20);
 
     // Find
     List<Rating> listResult = ratingRepository.findAll();
-    Assert.assertTrue(listResult.size() > 0);
+    assertTrue(listResult.size() > 0);
 
     // Delete
     Integer id = rating.getId();
     ratingRepository.delete(rating);
     Optional<Rating> ratingList = ratingRepository.findById(id);
-    Assert.assertFalse(ratingList.isPresent());
+    assertFalse(ratingList.isPresent());
   }
+
+  @Test
+  public void simpleEqualsRating() {
+    EqualsVerifier.forClass(Rating.class).suppress(Warning.ALL_FIELDS_SHOULD_BE_USED).verify();
+  }
+
 }
