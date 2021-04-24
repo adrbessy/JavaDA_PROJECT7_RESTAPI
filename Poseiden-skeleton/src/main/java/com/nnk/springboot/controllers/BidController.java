@@ -49,7 +49,7 @@ public class BidController {
   @PostMapping("/bidList/update/{id}")
   public String updateBid(@PathVariable("id") Integer id, Bid bid,
       BindingResult result, Model model) {
-    Bid updatedBid = bidRestController.updateBid(id, bid);
+    bidRestController.updateBid(id, bid);
     return "redirect:/bidList/list";
   }
 

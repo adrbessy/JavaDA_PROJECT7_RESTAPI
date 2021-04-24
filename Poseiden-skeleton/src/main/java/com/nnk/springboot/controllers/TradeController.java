@@ -47,7 +47,7 @@ public class TradeController {
   @PostMapping("/trade/update/{id}")
   public String updateTrade(@PathVariable("id") Integer id, Trade trade,
       BindingResult result, Model model) {
-    Trade updatedTrade = tradeRestController.updateTrade(id, trade);
+    tradeRestController.updateTrade(id, trade);
     return "redirect:/trade/list";
   }
 

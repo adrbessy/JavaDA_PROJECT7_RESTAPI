@@ -48,7 +48,7 @@ public class RuleController {
   @PostMapping("/rule/update/{id}")
   public String updateRule(@PathVariable("id") Integer id, Rule rule,
       BindingResult result, Model model) {
-    Rule updatedRule = ruleRestController.updateRule(id, rule);
+    ruleRestController.updateRule(id, rule);
     return "redirect:/rule/list";
   }
 

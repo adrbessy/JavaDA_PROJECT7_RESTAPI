@@ -50,7 +50,7 @@ public class CurvePointController {
       BindingResult result, Model model) {
     // TODO: check required fields, if valid call service to update Curve and return
     // Curve list
-    CurvePoint updatedCurvePoint = curvePointRestController.updateCurvePoint(id, curvePoint);
+    curvePointRestController.updateCurvePoint(id, curvePoint);
     return "redirect:/curvePoint/list";
   }
 

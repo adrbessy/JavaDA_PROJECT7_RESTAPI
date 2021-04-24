@@ -48,7 +48,7 @@ public class RatingController {
   @PostMapping("/rating/update/{id}")
   public String updateRating(@PathVariable("id") Integer id, Rating rating,
       BindingResult result, Model model) {
-    Rating updatedRating = ratingRestController.updateRating(id, rating);
+    ratingRestController.updateRating(id, rating);
     return "redirect:/rating/list";
   }
 
