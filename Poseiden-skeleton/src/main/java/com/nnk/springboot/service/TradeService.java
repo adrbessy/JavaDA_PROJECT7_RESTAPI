@@ -2,7 +2,6 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.model.Trade;
 import java.util.List;
-import java.util.Optional;
 
 public interface TradeService {
 
@@ -35,7 +34,7 @@ public interface TradeService {
    * @param id An id
    * @return the deleted trade
    */
-  Optional<Trade> deleteTrade(Integer id);
+  Trade deleteTrade(Integer id);
 
   /**
    * Get a trade from an id

@@ -4,7 +4,6 @@ import com.nnk.springboot.model.User;
 import com.nnk.springboot.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +77,9 @@ public class UserServiceImpl implements UserService {
    * @return the deleted user
    */
   @Override
-  public Optional<User> deleteUser(Integer id) {
+  public User deleteUser(Integer id) {
     logger.debug("in the method deleteUser in the class UserServiceImpl");
-    Optional<User> user = null;
+    User user = null;
     try {
       user = userRepository.findById(id);
       userRepository.deleteById(id);
@@ -99,18 +98,13 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getUser(Integer id) {
     logger.debug("in the method getUser in the class UserServiceImpl");
-    Optional<User> user = null;
+    User user = null;
     try {
       user = userRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getUser :" + exception.getMessage());
     }
-    if (user.isPresent()) {
-      User userToUpdate = user.get();
-      return userToUpdate;
-    } else {
-      return null;
-    }
+    return user;
   }
 
 }

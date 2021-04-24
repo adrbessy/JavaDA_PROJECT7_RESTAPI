@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.service.RatingService;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -59,7 +58,7 @@ public class RatingRestControllerTest {
   public void testDeleteRating() throws Exception {
     Integer id = 1;
     rating = new Rating();
-    Optional<Rating> rating2 = null;
+    Rating rating2 = null;
 
     when(ratingServiceMock.ratingExist(id)).thenReturn(true);
     when(ratingServiceMock.deleteRating(id)).thenReturn(rating2);

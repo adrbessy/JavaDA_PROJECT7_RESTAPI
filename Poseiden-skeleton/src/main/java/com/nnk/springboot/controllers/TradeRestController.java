@@ -6,7 +6,6 @@ import com.nnk.springboot.service.TradeService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,8 +75,8 @@ public class TradeRestController {
    * @return - The deleted trade
    */
   @DeleteMapping("/trade")
-  public Optional<Trade> deleteTrade(@RequestParam Integer id) {
-    Optional<Trade> trade = null;
+  public Trade deleteTrade(@RequestParam Integer id) {
+    Trade trade = null;
     boolean existingTrade = false;
     try {
       logger.info("Delete request with the endpoint 'trade'");

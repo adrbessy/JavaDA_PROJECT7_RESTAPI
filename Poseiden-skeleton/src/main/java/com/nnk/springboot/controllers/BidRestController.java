@@ -7,7 +7,6 @@ import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.service.BidService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,8 +81,8 @@ public class BidRestController {
    * @return - The deleted bid
    */
   @DeleteMapping("/bid")
-  public Optional<Bid> deleteBid(@RequestParam Integer id) {
-    Optional<Bid> bid = null;
+  public Bid deleteBid(@RequestParam Integer id) {
+    Bid bid = null;
     boolean existingBid = false;
     try {
       logger.info("Delete request with the endpoint 'bid'");

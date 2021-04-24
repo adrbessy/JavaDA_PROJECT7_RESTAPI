@@ -5,7 +5,6 @@ import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.service.RatingService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,8 +74,8 @@ public class RatingRestController {
    * @return - The deleted rating
    */
   @DeleteMapping("/rating")
-  public Optional<Rating> deleteRating(@RequestParam Integer id) {
-    Optional<Rating> rating = null;
+  public Rating deleteRating(@RequestParam Integer id) {
+    Rating rating = null;
     boolean existingRating = false;
     try {
       logger.info("Delete request with the endpoint 'rating'");

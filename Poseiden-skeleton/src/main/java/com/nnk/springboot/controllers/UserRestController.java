@@ -5,7 +5,6 @@ import com.nnk.springboot.model.User;
 import com.nnk.springboot.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,8 +74,8 @@ public class UserRestController {
    * @return - The deleted user
    */
   @DeleteMapping("/user")
-  public Optional<User> deleteUser(@RequestParam Integer id) {
-    Optional<User> user = null;
+  public User deleteUser(@RequestParam Integer id) {
+    User user = null;
     boolean existingUser = false;
     try {
       logger.info("Delete request with the endpoint 'user'");

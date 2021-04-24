@@ -2,7 +2,6 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.model.User;
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
@@ -35,7 +34,7 @@ public interface UserService {
    * @param id An id
    * @return the deleted user
    */
-  Optional<User> deleteUser(Integer id);
+  User deleteUser(Integer id);
 
   /**
    * Get a user from an id

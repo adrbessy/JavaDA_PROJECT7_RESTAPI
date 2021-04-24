@@ -4,7 +4,6 @@ import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.repositories.BidRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +77,9 @@ public class BidServiceImpl implements BidService {
    * @return the deleted bid
    */
   @Override
-  public Optional<Bid> deleteBid(Integer id) {
+  public Bid deleteBid(Integer id) {
     logger.debug("in the method deleteBid in the class BidServiceImpl");
-    Optional<Bid> bid = null;
+    Bid bid = null;
     try {
       bid = bidRepository.findById(id);
       bidRepository.deleteById(id);
@@ -99,18 +98,13 @@ public class BidServiceImpl implements BidService {
   @Override
   public Bid getBid(Integer id) {
     logger.debug("in the method getBid in the class BidServiceImpl");
-    Optional<Bid> bid = null;
+    Bid bid = null;
     try {
       bid = bidRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getBid :" + exception.getMessage());
     }
-    if (bid.isPresent()) {
-      Bid bidToUpdate = bid.get();
-      return bidToUpdate;
-    } else {
-      return null;
-    }
+    return bid;
   }
 
 }

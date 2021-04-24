@@ -5,7 +5,6 @@ import com.nnk.springboot.model.Rule;
 import com.nnk.springboot.service.RuleService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,8 +74,8 @@ public class RuleRestController {
    * @return - The deleted rule
    */
   @DeleteMapping("/rule")
-  public Optional<Rule> deleteRule(@RequestParam Integer id) {
-    Optional<Rule> rule = null;
+  public Rule deleteRule(@RequestParam Integer id) {
+    Rule rule = null;
     boolean existingRule = false;
     try {
       logger.info("Delete request with the endpoint 'rule'");

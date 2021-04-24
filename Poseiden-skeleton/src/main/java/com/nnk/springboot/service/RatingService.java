@@ -2,7 +2,6 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.model.Rating;
 import java.util.List;
-import java.util.Optional;
 
 public interface RatingService {
 
@@ -35,7 +34,7 @@ public interface RatingService {
    * @param id An id
    * @return the deleted rating
    */
-  Optional<Rating> deleteRating(Integer id);
+  Rating deleteRating(Integer id);
 
   /**
    * Get a rating from an id

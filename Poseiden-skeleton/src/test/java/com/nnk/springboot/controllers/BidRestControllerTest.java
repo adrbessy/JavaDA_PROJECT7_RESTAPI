@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.service.BidService;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -58,7 +57,7 @@ public class BidRestControllerTest {
   public void testDeleteBid() throws Exception {
     Integer id = 1;
     bid = new Bid();
-    Optional<Bid> bid2 = null;
+    Bid bid2 = null;
 
     when(bidServiceMock.bidExist(id)).thenReturn(true);
     when(bidServiceMock.deleteBid(id)).thenReturn(bid2);

@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.model.CurvePoint;
 import com.nnk.springboot.service.CurvePointService;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -58,7 +57,7 @@ public class CurvePointRestControllerTest {
   public void testDeleteCurvePoint() throws Exception {
     Integer id = 1;
     curvePoint = new CurvePoint();
-    Optional<CurvePoint> curvePoint2 = null;
+    CurvePoint curvePoint2 = null;
 
     when(curvePointServiceMock.curvePointExist(id)).thenReturn(true);
     when(curvePointServiceMock.deleteCurvePoint(id)).thenReturn(curvePoint2);

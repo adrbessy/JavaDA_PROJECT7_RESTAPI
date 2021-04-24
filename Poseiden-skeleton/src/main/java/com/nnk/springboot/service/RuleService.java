@@ -2,7 +2,6 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.model.Rule;
 import java.util.List;
-import java.util.Optional;
 
 public interface RuleService {
 
@@ -35,7 +34,7 @@ public interface RuleService {
    * @param id An id
    * @return the deleted rule
    */
-  Optional<Rule> deleteRule(Integer id);
+  Rule deleteRule(Integer id);
 
   /**
    * Get a rule from an id

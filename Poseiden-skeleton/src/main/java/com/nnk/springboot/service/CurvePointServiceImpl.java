@@ -4,7 +4,6 @@ import com.nnk.springboot.model.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +77,9 @@ public class CurvePointServiceImpl implements CurvePointService {
    * @return the deleted curve point
    */
   @Override
-  public Optional<CurvePoint> deleteCurvePoint(Integer id) {
+  public CurvePoint deleteCurvePoint(Integer id) {
     logger.debug("in the method deleteCurvePoint in the class CurvePointServiceImpl");
-    Optional<CurvePoint> curvePoint = null;
+    CurvePoint curvePoint = null;
     try {
       curvePoint = curvePointRepository.findById(id);
       curvePointRepository.deleteById(id);
@@ -99,18 +98,13 @@ public class CurvePointServiceImpl implements CurvePointService {
   @Override
   public CurvePoint getCurvePoint(Integer id) {
     logger.debug("in the method getCurvePoint in the class CurvePointServiceImpl");
-    Optional<CurvePoint> curvePoint = null;
+    CurvePoint curvePoint = null;
     try {
       curvePoint = curvePointRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getCurvePoint :" + exception.getMessage());
     }
-    if (curvePoint.isPresent()) {
-      CurvePoint curvePointToUpdate = curvePoint.get();
-      return curvePointToUpdate;
-    } else {
-      return null;
-    }
+    return curvePoint;
   }
 
 }

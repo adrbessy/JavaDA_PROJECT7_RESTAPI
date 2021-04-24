@@ -4,7 +4,6 @@ import com.nnk.springboot.model.Rule;
 import com.nnk.springboot.repositories.RuleRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +77,9 @@ public class RuleServiceImpl implements RuleService {
    * @return the deleted rule
    */
   @Override
-  public Optional<Rule> deleteRule(Integer id) {
+  public Rule deleteRule(Integer id) {
     logger.debug("in the method deleteRule in the class RuleServiceImpl");
-    Optional<Rule> rule = null;
+    Rule rule = null;
     try {
       rule = ruleRepository.findById(id);
       ruleRepository.deleteById(id);
@@ -99,18 +98,13 @@ public class RuleServiceImpl implements RuleService {
   @Override
   public Rule getRule(Integer id) {
     logger.debug("in the method getRule in the class RuleServiceImpl");
-    Optional<Rule> rule = null;
+    Rule rule = null;
     try {
       rule = ruleRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getRule :" + exception.getMessage());
     }
-    if (rule.isPresent()) {
-      Rule ruleToUpdate = rule.get();
-      return ruleToUpdate;
-    } else {
-      return null;
-    }
+    return rule;
   }
 
 }

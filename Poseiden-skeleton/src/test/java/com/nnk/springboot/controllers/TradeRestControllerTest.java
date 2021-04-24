@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.model.Trade;
 import com.nnk.springboot.service.TradeService;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -58,7 +57,7 @@ public class TradeRestControllerTest {
   public void testDeleteTrade() throws Exception {
     Integer id = 1;
     trade = new Trade();
-    Optional<Trade> trade2 = null;
+    Trade trade2 = null;
 
     when(tradeServiceMock.tradeExist(id)).thenReturn(true);
     when(tradeServiceMock.deleteTrade(id)).thenReturn(trade2);

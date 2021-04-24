@@ -1,11 +1,10 @@
 package com.nnk.springboot.model;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.nnk.springboot.repositories.RatingRepository;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +49,8 @@ public class RatingTests {
     // Delete
     Integer id = rating.getId();
     ratingRepository.delete(rating);
-    Optional<Rating> ratingList = ratingRepository.findById(id);
-    assertFalse(ratingList.isPresent());
+    Rating ratingList = ratingRepository.findById(id);
+    assertNull(ratingList);
   }
 
   @Test

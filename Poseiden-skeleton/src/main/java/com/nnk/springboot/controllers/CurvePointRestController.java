@@ -6,7 +6,6 @@ import com.nnk.springboot.model.CurvePoint;
 import com.nnk.springboot.service.CurvePointService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +80,8 @@ public class CurvePointRestController {
    * @return - The deleted curve point
    */
   @DeleteMapping("/curvePoint")
-  public Optional<CurvePoint> deleteCurvePoint(@RequestParam Integer id) {
-    Optional<CurvePoint> curvePoint = null;
+  public CurvePoint deleteCurvePoint(@RequestParam Integer id) {
+    CurvePoint curvePoint = null;
     boolean existingCurvePoint = false;
     try {
       logger.info("Delete request with the endpoint 'curvePoint'");

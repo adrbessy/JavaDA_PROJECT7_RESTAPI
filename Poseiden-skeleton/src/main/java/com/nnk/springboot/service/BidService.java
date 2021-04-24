@@ -2,7 +2,6 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.model.Bid;
 import java.util.List;
-import java.util.Optional;
 
 public interface BidService {
 
@@ -35,7 +34,7 @@ public interface BidService {
    * @param id An id
    * @return the deleted bid
    */
-  Optional<Bid> deleteBid(Integer id);
+  Bid deleteBid(Integer id);
 
   /**
    * Get a bid from an id

@@ -4,7 +4,6 @@ import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +77,9 @@ public class RatingServiceImpl implements RatingService {
    * @return the deleted rating
    */
   @Override
-  public Optional<Rating> deleteRating(Integer id) {
+  public Rating deleteRating(Integer id) {
     logger.debug("in the method deleteRating in the class RatingServiceImpl");
-    Optional<Rating> rating = null;
+    Rating rating = null;
     try {
       rating = ratingRepository.findById(id);
       ratingRepository.deleteById(id);
@@ -99,18 +98,13 @@ public class RatingServiceImpl implements RatingService {
   @Override
   public Rating getRating(Integer id) {
     logger.debug("in the method getRating in the class RatingServiceImpl");
-    Optional<Rating> rating = null;
+    Rating rating = null;
     try {
       rating = ratingRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getRating :" + exception.getMessage());
     }
-    if (rating.isPresent()) {
-      Rating ratingToUpdate = rating.get();
-      return ratingToUpdate;
-    } else {
-      return null;
-    }
+    return rating;
   }
 
 }

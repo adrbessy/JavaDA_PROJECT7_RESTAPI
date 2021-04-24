@@ -2,7 +2,6 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.model.CurvePoint;
 import java.util.List;
-import java.util.Optional;
 
 public interface CurvePointService {
 
@@ -35,7 +34,7 @@ public interface CurvePointService {
    * @param id An id
    * @return the deleted curve point
    */
-  Optional<CurvePoint> deleteCurvePoint(Integer id);
+  CurvePoint deleteCurvePoint(Integer id);
 
   /**
    * Get a curve point from an id
