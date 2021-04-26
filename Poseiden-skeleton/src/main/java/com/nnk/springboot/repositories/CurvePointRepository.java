@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CurvePointRepository extends JpaRepository<CurvePoint, Long> {
+public interface CurvePointRepository extends JpaRepository<CurvePoint, Integer> {
 
+  @Override
   void deleteById(Integer id);
 
-  CurvePoint findById(Integer id);
-
+  @Override
   boolean existsById(Integer id);
 
 }

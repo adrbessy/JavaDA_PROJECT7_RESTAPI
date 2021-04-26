@@ -81,7 +81,7 @@ public class TradeServiceImpl implements TradeService {
     logger.debug("in the method deleteTrade in the class TradeServiceImpl");
     Trade trade = null;
     try {
-      trade = tradeRepository.findById(id);
+      trade = tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
       tradeRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteTrade :" + exception.getMessage());
@@ -100,7 +100,7 @@ public class TradeServiceImpl implements TradeService {
     logger.debug("in the method getTrade in the class TradeServiceImpl");
     Trade trade = null;
     try {
-      trade = tradeRepository.findById(id);
+      trade = tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
     } catch (Exception exception) {
       logger.error("Error in the method getTrade :" + exception.getMessage());
     }

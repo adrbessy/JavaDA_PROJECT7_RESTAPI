@@ -47,7 +47,8 @@ public class CurvePointTests {
     // Delete
     Integer id = curvePoint.getId();
     curvePointRepository.delete(curvePoint);
-    CurvePoint curvePointList = curvePointRepository.findById(id);
+    CurvePoint curvePointList = curvePointRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Invalid curve point Id:" + id));
     assertNull(curvePointList);
   }
 

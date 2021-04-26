@@ -49,7 +49,8 @@ public class RatingTests {
     // Delete
     Integer id = rating.getId();
     ratingRepository.delete(rating);
-    Rating ratingList = ratingRepository.findById(id);
+    Rating ratingList = ratingRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
     assertNull(ratingList);
   }
 

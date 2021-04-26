@@ -1,12 +1,12 @@
 package com.nnk.springboot.model;
 
-import com.sun.istack.NotNull;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,10 +22,10 @@ public class Bid {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @NotNull
+  @NotBlank(message = "Account is mandatory")
   private String account;
 
-  @NotNull
+  @NotBlank(message = "Type is mandatory")
   private String type;
 
   private double bidQuantity;

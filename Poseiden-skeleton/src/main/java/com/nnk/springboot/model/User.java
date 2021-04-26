@@ -5,8 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,19 +22,22 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @NotNull
-  @Size(min = 2, max = 30)
+  @NotBlank(message = "User Name is mandatory")
   private String username;
 
-  @NotNull
-  @Size(min = 8)
+  // ^ # start-of-string (?=.*[0-9]) # a digit must occur at least once
+  // (?=.*[a-z]) # a lower case letter must occur at least once
+  // (?=.*[A-Z]) # an upper case letter must occur at least once
+  // (?=.*[@#$%^&+=]) # a special character must occur at least once
+  // (?=\S+$) # no whitespace allowed in the entire string
+  // .{8,} # anything, at least eight places though $ end-of-string
+  @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$", message = "The password must contain at least one capital letter, one number, one symbol and be at least 8 characters long")
   private String password;
 
-  @NotNull
-  @Size(min = 2, max = 30)
+  @NotBlank(message = "Full Name is mandatory")
   private String fullname;
 
-  @NotNull
+  @NotBlank(message = "Role is mandatory")
   private String role;
 
 }

@@ -1,12 +1,12 @@
 package com.nnk.springboot.model;
 
-import com.sun.istack.NotNull;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +22,7 @@ public class CurvePoint {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @NotNull
+  @NotBlank(message = "must not be null")
   private Integer curveId;
 
   private Timestamp asOfDate;

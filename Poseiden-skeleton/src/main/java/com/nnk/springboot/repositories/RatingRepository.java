@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RatingRepository extends JpaRepository<Rating, Long> {
+public interface RatingRepository extends JpaRepository<Rating, Integer> {
 
+  @Override
   void deleteById(Integer id);
 
-  Rating findById(Integer id);
-
+  @Override
   boolean existsById(Integer id);
 
 }

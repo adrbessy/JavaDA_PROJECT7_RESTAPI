@@ -81,7 +81,7 @@ public class RuleServiceImpl implements RuleService {
     logger.debug("in the method deleteRule in the class RuleServiceImpl");
     Rule rule = null;
     try {
-      rule = ruleRepository.findById(id);
+      rule = ruleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rule Id:" + id));
       ruleRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteRule :" + exception.getMessage());
@@ -100,7 +100,7 @@ public class RuleServiceImpl implements RuleService {
     logger.debug("in the method getRule in the class RuleServiceImpl");
     Rule rule = null;
     try {
-      rule = ruleRepository.findById(id);
+      rule = ruleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rule Id:" + id));
     } catch (Exception exception) {
       logger.error("Error in the method getRule :" + exception.getMessage());
     }

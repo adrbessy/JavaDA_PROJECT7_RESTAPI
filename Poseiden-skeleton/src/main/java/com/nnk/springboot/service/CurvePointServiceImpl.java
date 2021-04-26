@@ -81,7 +81,8 @@ public class CurvePointServiceImpl implements CurvePointService {
     logger.debug("in the method deleteCurvePoint in the class CurvePointServiceImpl");
     CurvePoint curvePoint = null;
     try {
-      curvePoint = curvePointRepository.findById(id);
+      curvePoint = curvePointRepository.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Invalid curve point Id:" + id));
       curvePointRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteCurvePoint :" + exception.getMessage());
@@ -100,7 +101,8 @@ public class CurvePointServiceImpl implements CurvePointService {
     logger.debug("in the method getCurvePoint in the class CurvePointServiceImpl");
     CurvePoint curvePoint = null;
     try {
-      curvePoint = curvePointRepository.findById(id);
+      curvePoint = curvePointRepository.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Invalid curve point Id:" + id));
     } catch (Exception exception) {
       logger.error("Error in the method getCurvePoint :" + exception.getMessage());
     }

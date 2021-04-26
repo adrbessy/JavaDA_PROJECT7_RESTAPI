@@ -49,7 +49,7 @@ public class BidTests {
     // Delete
     Integer id = bid.getId();
     bidRepository.delete(bid);
-    Bid bidList = bidRepository.findById(id);
+    Bid bidList = bidRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bid Id:" + id));
     assertNull(bidList);
   }
 

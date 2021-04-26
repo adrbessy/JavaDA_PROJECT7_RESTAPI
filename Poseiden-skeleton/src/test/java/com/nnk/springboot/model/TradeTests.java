@@ -47,7 +47,8 @@ public class TradeTests {
     // Delete
     Integer id = trade.getId();
     tradeRepository.delete(trade);
-    Trade tradeList = tradeRepository.findById(id);
+    Trade tradeList = tradeRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
     assertNull(tradeList);
   }
 

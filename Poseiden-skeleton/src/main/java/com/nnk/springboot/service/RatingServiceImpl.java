@@ -81,7 +81,7 @@ public class RatingServiceImpl implements RatingService {
     logger.debug("in the method deleteRating in the class RatingServiceImpl");
     Rating rating = null;
     try {
-      rating = ratingRepository.findById(id);
+      rating = ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
       ratingRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteRating :" + exception.getMessage());
@@ -100,7 +100,7 @@ public class RatingServiceImpl implements RatingService {
     logger.debug("in the method getRating in the class RatingServiceImpl");
     Rating rating = null;
     try {
-      rating = ratingRepository.findById(id);
+      rating = ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
     } catch (Exception exception) {
       logger.error("Error in the method getRating :" + exception.getMessage());
     }

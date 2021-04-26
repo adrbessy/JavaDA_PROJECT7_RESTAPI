@@ -51,7 +51,8 @@ public class RuleTests {
     // Delete
     Integer id = rule.getId();
     ruleNameRepository.delete(rule);
-    Rule ruleList = ruleNameRepository.findById(id);
+    Rule ruleList = ruleNameRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Invalid rule Id:" + id));
     assertNull(ruleList);
   }
 
