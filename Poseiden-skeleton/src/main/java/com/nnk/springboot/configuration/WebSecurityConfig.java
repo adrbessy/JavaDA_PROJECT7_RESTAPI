@@ -1,8 +1,11 @@
 package com.nnk.springboot.configuration;
 
+import com.nnk.springboot.filters.JwtRequestFilter;
 import com.nnk.springboot.service.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,33 +15,44 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+  @Autowired
+  private JwtRequestFilter jwtRequestFilter;
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
     auth.authenticationProvider(authenticationProvider());
   }
 
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    // http.csrf().disable();
+  @Bean
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 
-    http.authorizeRequests()
-        .antMatchers("/").permitAll()
-        .antMatchers("/user/*").hasAuthority("ADMIN")
-        .anyRequest().authenticated()
-        .and()
-        .formLogin().permitAll()
-        // .loginPage("/login")
-        // .usernameParameter("username")
-        .defaultSuccessUrl("/bidList/list")
-        .permitAll()
-        .and().logout().logoutSuccessUrl("/").permitAll();
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+
+    http.csrf().disable()
+        .exceptionHandling();
+
+    http
+        .authorizeRequests()
+        .antMatchers("/", "/authenticate").permitAll()
+        .antMatchers("/user/*").hasAuthority("ADMIN").anyRequest().authenticated()
+        .and().formLogin().permitAll()
+        .usernameParameter("username").defaultSuccessUrl("/bidList/list")
+        .permitAll().and().logout().logoutSuccessUrl("/").permitAll();
+
+
+    http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
   }
 
   @Override
