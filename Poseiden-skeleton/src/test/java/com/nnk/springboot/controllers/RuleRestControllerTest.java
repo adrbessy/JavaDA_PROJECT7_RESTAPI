@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,13 +31,13 @@ public class RuleRestControllerTest {
   private Rule rule;
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testGetRules() throws Exception {
     mockMvc.perform(get("/rules")).andExpect(status().isOk());
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testCreateRule() throws Exception {
     rule = new Rule();
     rule.setName("name");
@@ -53,7 +54,7 @@ public class RuleRestControllerTest {
 
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteRule() throws Exception {
     Integer id = 1;
     rule = new Rule();
@@ -68,7 +69,7 @@ public class RuleRestControllerTest {
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteRuleIfidDoesntExist() throws Exception {
     Integer id = 1;
     rule = new Rule();
@@ -81,6 +82,7 @@ public class RuleRestControllerTest {
   }
 
   @Test
+  @WithMockUser(roles = "ADMIN")
   public void testUpdateRule() throws Exception {
     Integer id = 1;
     rule = new Rule();

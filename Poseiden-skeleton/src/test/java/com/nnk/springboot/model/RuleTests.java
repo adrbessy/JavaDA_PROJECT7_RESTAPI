@@ -1,6 +1,6 @@
 package com.nnk.springboot.model;
 
-import static org.junit.Assert.assertNull;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.nnk.springboot.repositories.RuleRepository;
@@ -51,9 +51,7 @@ public class RuleTests {
     // Delete
     Integer id = rule.getId();
     ruleNameRepository.delete(rule);
-    Rule ruleList = ruleNameRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("Invalid rule Id:" + id));
-    assertNull(ruleList);
+    assertThat(ruleNameRepository.findById(id)).isEmpty();
   }
 
   @Test

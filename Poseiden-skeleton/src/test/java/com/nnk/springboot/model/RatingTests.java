@@ -1,6 +1,6 @@
 package com.nnk.springboot.model;
 
-import static org.junit.Assert.assertNull;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.nnk.springboot.repositories.RatingRepository;
@@ -49,9 +49,7 @@ public class RatingTests {
     // Delete
     Integer id = rating.getId();
     ratingRepository.delete(rating);
-    Rating ratingList = ratingRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
-    assertNull(ratingList);
+    assertThat(ratingRepository.findById(id)).isEmpty();
   }
 
   @Test

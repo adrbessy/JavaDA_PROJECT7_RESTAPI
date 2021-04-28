@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,13 +31,13 @@ public class BidRestControllerTest {
   private Bid bid;
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testGetBids() throws Exception {
     mockMvc.perform(get("/bids")).andExpect(status().isOk());
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testCreateBid() throws Exception {
     bid = new Bid();
     bid.setAccount("account");
@@ -53,7 +54,7 @@ public class BidRestControllerTest {
 
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteBid() throws Exception {
     Integer id = 1;
     bid = new Bid();
@@ -68,7 +69,7 @@ public class BidRestControllerTest {
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteBidIfidDoesntExist() throws Exception {
     Integer id = 1;
     bid = new Bid();
@@ -81,6 +82,7 @@ public class BidRestControllerTest {
   }
 
   @Test
+  @WithMockUser(roles = "ADMIN")
   public void testUpdateBid() throws Exception {
     Integer id = 1;
     bid = new Bid();

@@ -2,6 +2,8 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Trade;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,29 +17,39 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TradeController {
 
+  private static final Logger logger = LogManager.getLogger(TradeController.class);
+
   @Autowired
   private TradeRestController tradeRestController;
 
   @RequestMapping("/trade/list")
   public String home(Model model) {
+    logger.info(
+        "request of the endpoint '/trade/list'");
     List<Trade> tradeList = tradeRestController.getTrades();
     model.addAttribute("tradeList", tradeList);
     return "trade/list";
   }
 
   @GetMapping("/trade/add")
-  public String addUser(Trade bid) {
+  public String addTradeForm(Trade bid) {
+    logger.info(
+        "request of the endpoint '/trade/add'");
     return "trade/add";
   }
 
   @PostMapping("/trade/validate")
   public ModelAndView validate(Trade trade, BindingResult result, Model model) {
+    logger.info(
+        "request of the endpoint '/trade/validate'");
     tradeRestController.createTrade(trade);
     return new ModelAndView("redirect:/trade/list");
   }
 
   @GetMapping("/trade/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    logger.info(
+        "GET request of the endpoint '/trade/update/{id}'");
     Trade newTrade = new Trade();
     model.addAttribute("id", id);
     model.addAttribute("newTrade", newTrade);
@@ -47,12 +59,16 @@ public class TradeController {
   @PostMapping("/trade/update/{id}")
   public String updateTrade(@PathVariable("id") Integer id, Trade trade,
       BindingResult result, Model model) {
+    logger.info(
+        "POST request of the endpoint '/trade/update/{id}'");
     tradeRestController.updateTrade(id, trade);
     return "redirect:/trade/list";
   }
 
   @GetMapping("/trade/delete/{id}")
   public ModelAndView deleteTrade(@PathVariable("id") Integer id, Model model) {
+    logger.info(
+        "request of the endpoint '/trade/delete/{id}'");
     tradeRestController.deleteTrade(id);
     return new ModelAndView("redirect:/trade/list");
   }

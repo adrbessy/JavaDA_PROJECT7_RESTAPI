@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,13 +31,13 @@ public class CurvePointRestControllerTest {
   private CurvePoint curvePoint;
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testGetCurvePoints() throws Exception {
     mockMvc.perform(get("/curvePoints")).andExpect(status().isOk());
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testCreateCurvePoint() throws Exception {
     curvePoint = new CurvePoint();
     curvePoint.setCurveId(1);
@@ -53,7 +54,7 @@ public class CurvePointRestControllerTest {
 
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteCurvePoint() throws Exception {
     Integer id = 1;
     curvePoint = new CurvePoint();
@@ -68,7 +69,7 @@ public class CurvePointRestControllerTest {
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteCurvePointIfidDoesntExist() throws Exception {
     Integer id = 1;
     curvePoint = new CurvePoint();
@@ -81,6 +82,7 @@ public class CurvePointRestControllerTest {
   }
 
   @Test
+  @WithMockUser(roles = "ADMIN")
   public void testUpdateCurvePoint() throws Exception {
     Integer id = 1;
     curvePoint = new CurvePoint();

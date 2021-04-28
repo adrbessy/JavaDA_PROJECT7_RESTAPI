@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,13 +31,13 @@ public class TradeRestControllerTest {
   private Trade trade;
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testGetTrades() throws Exception {
     mockMvc.perform(get("/trades")).andExpect(status().isOk());
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testCreateTrade() throws Exception {
     trade = new Trade();
     trade.setAccount("account");
@@ -53,7 +54,7 @@ public class TradeRestControllerTest {
 
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteTrade() throws Exception {
     Integer id = 1;
     trade = new Trade();
@@ -68,7 +69,7 @@ public class TradeRestControllerTest {
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteTradeIfidDoesntExist() throws Exception {
     Integer id = 1;
     trade = new Trade();
@@ -81,6 +82,7 @@ public class TradeRestControllerTest {
   }
 
   @Test
+  @WithMockUser(roles = "ADMIN")
   public void testUpdateTrade() throws Exception {
     Integer id = 1;
     trade = new Trade();

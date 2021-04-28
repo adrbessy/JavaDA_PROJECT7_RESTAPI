@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,13 +31,13 @@ public class RatingRestControllerTest {
   private Rating rating;
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testGetRatings() throws Exception {
     mockMvc.perform(get("/ratings")).andExpect(status().isOk());
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testCreateRating() throws Exception {
     rating = new Rating();
     rating.setMoodysRating("moodysRating");
@@ -54,7 +55,7 @@ public class RatingRestControllerTest {
 
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteRating() throws Exception {
     Integer id = 1;
     rating = new Rating();
@@ -69,7 +70,7 @@ public class RatingRestControllerTest {
   }
 
   @Test
-  // @WithMockUser(roles = "ADMIN")
+  @WithMockUser(roles = "ADMIN")
   public void testDeleteRatingIfidDoesntExist() throws Exception {
     Integer id = 1;
     rating = new Rating();
@@ -82,6 +83,7 @@ public class RatingRestControllerTest {
   }
 
   @Test
+  @WithMockUser(roles = "ADMIN")
   public void testUpdateRating() throws Exception {
     Integer id = 1;
     rating = new Rating();

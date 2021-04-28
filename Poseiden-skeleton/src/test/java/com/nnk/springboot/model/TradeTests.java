@@ -1,6 +1,6 @@
 package com.nnk.springboot.model;
 
-import static org.junit.Assert.assertNull;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.nnk.springboot.repositories.TradeRepository;
@@ -47,9 +47,7 @@ public class TradeTests {
     // Delete
     Integer id = trade.getId();
     tradeRepository.delete(trade);
-    Trade tradeList = tradeRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
-    assertNull(tradeList);
+    assertThat(tradeRepository.findById(id)).isEmpty();
   }
 
   @Test
