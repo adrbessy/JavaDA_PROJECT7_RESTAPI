@@ -168,6 +168,7 @@ public class UserRestController {
           }
           String password = user.getPassword();
           if (password != null) {
+
             userToUpdate.setPassword(password);
           }
           String fullname = user.getFullname();

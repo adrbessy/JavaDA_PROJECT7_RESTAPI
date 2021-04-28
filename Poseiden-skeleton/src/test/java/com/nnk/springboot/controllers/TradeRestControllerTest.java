@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.model.Trade;
 import com.nnk.springboot.service.TradeService;
+import java.sql.Timestamp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -89,6 +90,23 @@ public class TradeRestControllerTest {
     trade.setAccount("account");
     trade.setType("type");
     trade.setBuyQuantity(10);
+    trade.setSellQuantity(10);
+    trade.setBuyPrice(10);
+    trade.setSellPrice(10);
+    trade.setBenchmark("a");
+    trade.setTradeDate(new Timestamp(System.currentTimeMillis()));
+    trade.setSecurity("");
+    trade.setTrader("a");
+    trade.setBook("");
+    trade.setStatus("");
+    trade.setCreationName("a");
+    trade.setCreationDate(new Timestamp(System.currentTimeMillis()));
+    trade.setRevisionName("");
+    trade.setDealName("a");
+    trade.setRevisionDate(new Timestamp(System.currentTimeMillis()));
+    trade.setDealType("");
+    trade.setSourceListId("");
+    trade.setSide("");
 
     when(tradeServiceMock.tradeExist(id)).thenReturn(true);
     when(tradeServiceMock.getTrade(id)).thenReturn(trade);

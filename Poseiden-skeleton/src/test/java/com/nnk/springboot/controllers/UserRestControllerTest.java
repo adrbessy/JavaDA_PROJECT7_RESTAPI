@@ -29,6 +29,7 @@ public class UserRestControllerTest {
   private UserService userServiceMock;
 
   private User user;
+  // private User user2;
 
   @Test
   @WithMockUser(roles = "ADMIN")
@@ -87,16 +88,18 @@ public class UserRestControllerTest {
    * 
    * @WithMockUser(roles = "ADMIN") public void testUpdateUser() throws Exception
    * { Integer id = 1; user = new User(); user.setId(id);
-   * user.setUsername("username"); user.setPassword("aZer0%54a");
-   * user.setFullname("fullname"); user.setRole("user");
+   * user.setUsername("username"); user.setPassword("aZer0%54aPOP");
+   * user.setFullname("fullname"); user.setRole("USER"); user2 = new User();
+   * user2.setUsername("username2");
    * 
    * when(userServiceMock.userExist(id)).thenReturn(true);
    * when(userServiceMock.getUser(id)).thenReturn(user);
+   * when(userServiceMock.saveUser(user)).thenReturn(user);
    * 
-   * MockHttpServletRequestBuilder builder = MockMvcRequestBuilders .put("/user/"
-   * + id) .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.
-   * APPLICATION_JSON).characterEncoding("UTF-8") .content(new
-   * ObjectMapper().writeValueAsString(user));
+   * MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put("/user/1")
+   * .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.
+   * APPLICATION_JSON) .characterEncoding("UTF-8").content(new
+   * ObjectMapper().writeValueAsString(user2));
    * this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk()
    * ); }
    */
