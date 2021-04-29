@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.CurvePoint;
@@ -48,17 +49,18 @@ public class CurvePointControllerTest {
         .andExpect(status().isOk()).andExpect(view().name("curvePoint/add"));
   }
 
-  /*
-   * @Test
-   * 
-   * @WithMockUser(roles = "ADMIN") public void testValidate() throws Exception {
-   * CurvePoint curvePoint = new CurvePoint();
-   * 
-   * when(curvePointRestControllerMock.createCurvePoint(curvePoint)).thenReturn(
-   * curvePoint);
-   * 
-   * mockMvc.perform(get("/curvePoint/validate")) .andExpect(status().isOk()); }
-   */
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testValidate() throws Exception {
+    CurvePoint curvePoint = new CurvePoint();
+
+    when(curvePointRestControllerMock.createCurvePoint(curvePoint)).thenReturn(curvePoint);
+
+    mockMvc
+        .perform(post("/curvePoint/validate").contentType("text/html;charset=UTF-8").sessionAttr("curvePoint",
+            curvePoint))
+        .andExpect(status().is3xxRedirection());
+  }
 
 
 }

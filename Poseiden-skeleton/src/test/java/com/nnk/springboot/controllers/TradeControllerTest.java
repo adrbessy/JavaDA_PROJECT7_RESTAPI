@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.Trade;
@@ -48,16 +49,18 @@ public class TradeControllerTest {
         .andExpect(status().isOk()).andExpect(view().name("trade/add"));
   }
 
-  /*
-   * @Test
-   * 
-   * @WithMockUser(roles = "ADMIN") public void testValidate() throws Exception {
-   * Trade trade = new Trade();
-   * 
-   * when(tradeRestControllerMock.createTrade(trade)).thenReturn(trade);
-   * 
-   * mockMvc.perform(get("/trade/validate")) .andExpect(status().isOk()); }
-   */
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testValidate() throws Exception {
+    Trade trade = new Trade();
+
+    when(tradeRestControllerMock.createTrade(trade)).thenReturn(trade);
+
+    mockMvc
+        .perform(post("/trade/validate").contentType("text/html;charset=UTF-8").sessionAttr("trade",
+            trade))
+        .andExpect(status().is3xxRedirection());
+  }
 
 
 }

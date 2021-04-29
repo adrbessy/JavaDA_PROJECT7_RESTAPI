@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.Rule;
@@ -48,16 +49,18 @@ public class RuleControllerTest {
         .andExpect(status().isOk()).andExpect(view().name("rule/add"));
   }
 
-  /*
-   * @Test
-   * 
-   * @WithMockUser(roles = "ADMIN") public void testValidate() throws Exception {
-   * Rule rule = new Rule();
-   * 
-   * when(ruleRestControllerMock.createRule(rule)).thenReturn(rule);
-   * 
-   * mockMvc.perform(get("/rule/validate")) .andExpect(status().isOk()); }
-   */
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testValidate() throws Exception {
+    Rule rule = new Rule();
+
+    when(ruleRestControllerMock.createRule(rule)).thenReturn(rule);
+
+    mockMvc
+        .perform(post("/rule/validate").contentType("text/html;charset=UTF-8").sessionAttr("rule",
+            rule))
+        .andExpect(status().is3xxRedirection());
+  }
 
 
 }

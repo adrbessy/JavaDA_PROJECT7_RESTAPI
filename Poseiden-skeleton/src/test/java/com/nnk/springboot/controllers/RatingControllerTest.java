@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.Rating;
@@ -48,16 +49,18 @@ public class RatingControllerTest {
         .andExpect(status().isOk()).andExpect(view().name("rating/add"));
   }
 
-  /*
-   * @Test
-   * 
-   * @WithMockUser(roles = "ADMIN") public void testValidate() throws Exception {
-   * Rating rating = new Rating();
-   * 
-   * when(ratingRestControllerMock.createRating(rating)).thenReturn(rating);
-   * 
-   * mockMvc.perform(get("/rating/validate")) .andExpect(status().isOk()); }
-   */
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testValidate() throws Exception {
+    Rating rating = new Rating();
+
+    when(ratingRestControllerMock.createRating(rating)).thenReturn(rating);
+
+    mockMvc
+        .perform(post("/rating/validate").contentType("text/html;charset=UTF-8").sessionAttr("rating",
+            rating))
+        .andExpect(status().is3xxRedirection());
+  }
 
 
 }

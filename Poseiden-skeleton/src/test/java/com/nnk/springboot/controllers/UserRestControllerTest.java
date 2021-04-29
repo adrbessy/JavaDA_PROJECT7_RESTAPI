@@ -29,7 +29,7 @@ public class UserRestControllerTest {
   private UserService userServiceMock;
 
   private User user;
-  // private User user2;
+  private User user2;
 
   @Test
   @WithMockUser(roles = "ADMIN")
@@ -98,7 +98,7 @@ public class UserRestControllerTest {
    * 
    * MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put("/user/1")
    * .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.
-   * APPLICATION_JSON) .characterEncoding("UTF-8").content(new
+   * APPLICATION_JSON).characterEncoding("UTF-8") .content(new
    * ObjectMapper().writeValueAsString(user2));
    * this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk()
    * ); }
