@@ -34,7 +34,7 @@ public class LoginController {
     logger.info("Get request with the endpoint 'secure/article-details'");
     ModelAndView mav = new ModelAndView();
     mav.addObject("users", userRepository.findAll());
-    mav.setViewName("user/list");
+    mav.setViewName("/user/list");
     return mav;
   }
 

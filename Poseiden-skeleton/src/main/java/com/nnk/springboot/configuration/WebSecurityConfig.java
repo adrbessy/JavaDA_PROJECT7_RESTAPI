@@ -38,23 +38,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-
     http.csrf().disable()
         .exceptionHandling();
 
     http
         .authorizeRequests()
-        .antMatchers("/user/*").hasAuthority("ADMIN")
-        .antMatchers("/bidList/list").authenticated()
+        .antMatchers("/user/**").hasAuthority("ADMIN")
+        .antMatchers("/bid/**").authenticated()
+        .antMatchers("/curvePoint/**").authenticated()
+        .antMatchers("/rating/**").authenticated()
+        .antMatchers("/rule/**").authenticated()
+        .antMatchers("/trade/**").authenticated()
         .anyRequest().permitAll()
         .and()
         .formLogin()
-        .usernameParameter("username").defaultSuccessUrl("/bidList/list")
+        .usernameParameter("username").defaultSuccessUrl("/bid/list")
         .permitAll().and().logout().logoutSuccessUrl("/").permitAll();
 
-
     http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+  }
 
+  @Bean
+  public DaoAuthenticationProvider authenticationProvider() {
+    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+    authProvider.setUserDetailsService(userDetailsService());
+    authProvider.setPasswordEncoder(passwordEncoder());
+    return authProvider;
   }
 
   @Override
@@ -66,14 +75,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
-  }
-
-  @Bean
-  public DaoAuthenticationProvider authenticationProvider() {
-    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    authProvider.setUserDetailsService(userDetailsService());
-    authProvider.setPasswordEncoder(passwordEncoder());
-    return authProvider;
   }
 
 

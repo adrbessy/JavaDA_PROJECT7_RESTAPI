@@ -29,7 +29,7 @@ public class UserRestControllerTest {
   private UserService userServiceMock;
 
   private User user;
-  private User user2;
+  // private User user2;
 
   @Test
   @WithMockUser(roles = "ADMIN")

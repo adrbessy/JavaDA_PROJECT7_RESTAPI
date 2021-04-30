@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Home</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<h2>Update Bid</h2>
+	</div>
+
+	<div class="row">
+		<form action="#" th:action="@{/bid/update/{id}(id=${id})}" th:object="${newBid}" method="post" class="form-horizontal" style="width: 100%">
+			<div class="form-group">
+				<label for="accountInput">Account</label> 
+				<input
+					type="text" th:field="*{account}" class="form-control" id="accountInput"
+					aria-describedby="accountHelp" placeholder="Account Name" required> 
+			</div>
+			<div class="form-group">
+				<label for="typeInput">Type</label> 
+				<input
+					type="text" th:field="*{type}" class="form-control" id="typeInput"
+					aria-describedby="lastNameHelp" placeholder="Account Type" required> 
+			</div>
+			<div class="form-group">
+				<label for="bidQuantitylInput">Bid quantity</label> 
+				<input
+					type="number" th:field="*{bidQuantity}" class="form-control" id="bidQuantityInput"
+					aria-describedby="mailHelp" placeholder="Bid quantity"> 
+			</div>
+			<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>
+			<button type="submit" class="btn btn-primary">Modifier</button>
+		</form>
+	</div>
+
+</div>
+</body>
+</html>

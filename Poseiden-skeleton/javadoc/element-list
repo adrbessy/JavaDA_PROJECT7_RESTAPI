@@ -1,0 +1,9 @@
+com.nnk.springboot
+com.nnk.springboot.configuration
+com.nnk.springboot.controllers
+com.nnk.springboot.exceptions
+com.nnk.springboot.filters
+com.nnk.springboot.model
+com.nnk.springboot.repositories
+com.nnk.springboot.security
+com.nnk.springboot.service

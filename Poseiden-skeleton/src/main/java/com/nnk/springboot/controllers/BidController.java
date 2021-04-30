@@ -23,54 +23,54 @@ public class BidController {
   @Autowired
   private BidRestController bidRestController;
 
-  @RequestMapping("/bidList/list")
+  @RequestMapping("/bid/list")
   public String home(Model model) {
     logger.info(
-        "request of the endpoint '/bidList/list'");
+        "request of the endpoint '/bid/list'");
     List<Bid> bidList = bidRestController.getBids();
     model.addAttribute("bidList", bidList);
-    return "bidList/list";
+    return "bid/list";
   }
 
-  @GetMapping("/bidList/add")
+  @GetMapping("/bid/add")
   public String addBidForm(Bid bid) {
     logger.info(
-        "request of the endpoint '/bidList/add'");
-    return "bidList/add";
+        "request of the endpoint '/bid/add'");
+    return "bid/add";
   }
 
-  @PostMapping("/bidList/validate")
+  @PostMapping("/bid/validate")
   public ModelAndView validate(Bid bid, BindingResult result, Model model) {
     logger.info(
-        "request of the endpoint '/bidList/validate'");
+        "request of the endpoint '/bid/validate'");
     bidRestController.createBid(bid);
-    return new ModelAndView("redirect:/bidList/list");
+    return new ModelAndView("redirect:/bid/list");
   }
 
-  @GetMapping("/bidList/update/{id}")
+  @GetMapping("/bid/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
     logger.info(
-        "GET request of the endpoint '/bidList/update/{id}'");
+        "GET request of the endpoint '/bid/update/{id}'");
     Bid newBid = new Bid();
     model.addAttribute("id", id);
     model.addAttribute("newBid", newBid);
-    return "bidList/update";
+    return "bid/update";
   }
 
-  @PostMapping("/bidList/update/{id}")
+  @PostMapping("/bid/update/{id}")
   public String updateBid(@PathVariable("id") Integer id, Bid bid,
       BindingResult result, Model model) {
     logger.info(
-        "POST request of the endpoint '/bidList/update/{id}'");
+        "POST request of the endpoint '/bid/update/{id}'");
     bidRestController.updateBid(id, bid);
-    return "redirect:/bidList/list";
+    return "redirect:/bid/list";
   }
 
-  @GetMapping("/bidList/delete/{id}")
+  @GetMapping("/bid/delete/{id}")
   public ModelAndView deleteBid(@PathVariable("id") Integer id, Model model) {
     logger.info(
-        "request of the endpoint '/bidList/delete/{id}'");
+        "request of the endpoint '/bid/delete/{id}'");
     bidRestController.deleteBid(id);
-    return new ModelAndView("redirect:/bidList/list");
+    return new ModelAndView("redirect:/bid/list");
   }
 }

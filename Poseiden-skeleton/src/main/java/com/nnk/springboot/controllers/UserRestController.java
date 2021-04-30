@@ -17,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -99,6 +100,8 @@ public class UserRestController {
     User newUser = null;
     try {
       logger.info("Post request with the endpoint 'user'");
+      BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+      user.setPassword(encoder.encode(user.getPassword()));
       newUser = userService.saveUser(user);
       logger.info(
           "response following the Post on the endpoint 'user' with the given user : {"
@@ -168,8 +171,8 @@ public class UserRestController {
           }
           String password = user.getPassword();
           if (password != null) {
-
-            userToUpdate.setPassword(password);
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            userToUpdate.setPassword(encoder.encode(user.getPassword()));
           }
           String fullname = user.getFullname();
           if (fullname != null) {

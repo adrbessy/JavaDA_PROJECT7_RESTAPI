@@ -22,7 +22,7 @@ public class HomeController {
   public String adminHome(Model model) {
     logger.info(
         "request of the endpoint '/admin/home'");
-    return "redirect:/bidList/list";
+    return "redirect:/bid/list";
   }
 
 
