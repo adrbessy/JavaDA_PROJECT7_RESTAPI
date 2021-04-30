@@ -1,31 +1,106 @@
-# spring-boot
-## Technical:
+# Poseidon
+An application for making trades.
+This app uses Java to run and stores the data in Postgresql DB.
 
-1. Framework: Spring Boot v2.0.4
-2. Java 8
-3. Thymeleaf
-4. Bootstrap v.4.3.1
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+- Java 1.8
+- Maven 4.0.0
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running:
+
+1.Install Java:
+
+https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html
+
+2.Install Maven:
+
+https://maven.apache.org/install.html
+
+### Running App
+
+You can run the application in two different ways:
+
+1/ import the code into an IDE of your choice and run the Application.java to launch the application.
+
+2/ Or import the code, unzip it, open the console, go to the folder that contains the pom.xml file, then execute the below command to launch the application.
+
+mvn spring-boot:run 
+
+### API calls (URI, parameters)
+GET
+
+http://localhost:9004/bids
+
+http://localhost:9004/curvePoints
+
+http://localhost:9004/ratings
+
+http://localhost:9004/rules
+
+http://localhost:9004/trades
+
+http://localhost:9004/users
 
 
-## Setup with Intellij IDE
-1. Create project from Initializr: File > New > project > Spring Initializr
-2. Add lib repository into pom.xml
-3. Add folders
-    - Source root: src/main/java
-    - View: src/main/resources
-    - Static: src/main/resource/static
-4. Create database with name "demo" as configuration in application.properties
-5. Run sql script to create table doc/data.sql
+POST
 
-## Implement a Feature
-1. Create mapping domain class and place in package com.nnk.springboot.domain
-2. Create repository class and place in package com.nnk.springboot.repositories
-3. Create controller class and place in package com.nnk.springboot.controllers
-4. Create view files and place in src/main/resource/templates
+http://localhost:9004/authenticate
 
-## Write Unit Test
-1. Create unit test and place in package com.nnk.springboot in folder test > java
+http://localhost:9004/bid
 
-## Security
-1. Create user service to load user from  database and place in package com.nnk.springboot.services
-2. Add configuration class and place in package com.nnk.springboot.config
+http://localhost:9004/curvePoint
+
+http://localhost:9004/rating
+
+http://localhost:9004/rule
+
+http://localhost:9004/trade
+
+
+PUT
+
+http://localhost:9004/bid/2
+
+http://localhost:9004/curvePoint/2
+
+http://localhost:9004/rating/2
+
+http://localhost:9004/rule/2
+
+http://localhost:9004/trade/2
+
+http://localhost:9004/user/14
+
+
+DELETE
+
+http://localhost:9004/bid?id=3
+
+http://localhost:9004/curvePoint?id=1
+
+http://localhost:9004/rating?id=1
+
+http://localhost:9004/rule?id=1
+
+http://localhost:9004/trade?id=1
+
+http://localhost:9004/user?id=3
+
+
+### Testing
+The app has unit tests written.
+
+To run the tests from maven, go to the folder that contains the pom.xml file and execute the below command.
+
+mvn test
+
+
