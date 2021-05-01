@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
    * Get a user from an id
    * 
    * @param id The id of the user table
-   * @return The bid
+   * @return The username
    */
   @Override
   public User getUser(Integer id) {
@@ -101,6 +101,24 @@ public class UserServiceImpl implements UserService {
     User user = null;
     try {
       user = userRepository.findById(id);
+    } catch (Exception exception) {
+      logger.error("Error in the method getUser :" + exception.getMessage());
+    }
+    return user;
+  }
+
+  /**
+   * Get a user from a username
+   * 
+   * @param username The id of the user table
+   * @return The username
+   */
+  @Override
+  public User getUser(String username) {
+    logger.debug("in the method getUser in the class UserServiceImpl");
+    User user = null;
+    try {
+      user = userRepository.findByUsername(username);
     } catch (Exception exception) {
       logger.error("Error in the method getUser :" + exception.getMessage());
     }

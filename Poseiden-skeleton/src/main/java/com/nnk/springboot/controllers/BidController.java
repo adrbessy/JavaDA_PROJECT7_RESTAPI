@@ -1,10 +1,13 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Bid;
+import com.nnk.springboot.model.User;
+import com.nnk.springboot.service.UserService;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,13 +25,17 @@ public class BidController {
 
   @Autowired
   private BidRestController bidRestController;
+  @Autowired
+  private UserService userService;
 
   @RequestMapping("/bid/list")
-  public String home(Model model) {
+  public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name") String username) {
     logger.info(
         "request of the endpoint '/bid/list'");
     List<Bid> bidList = bidRestController.getBids();
     model.addAttribute("bidList", bidList);
+    User user = userService.getUser(username);
+    model.addAttribute("user", user);
     return "bid/list";
   }
 

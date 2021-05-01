@@ -40,8 +40,16 @@ public interface UserService {
    * Get a user from an id
    * 
    * @param id The id of the user table
-   * @return The bid
+   * @return The user
    */
   User getUser(Integer id);
+
+  /**
+   * Get a user from a username
+   * 
+   * @param username The username of the user table
+   * @return The user
+   */
+  User getUser(String username);
 
 }

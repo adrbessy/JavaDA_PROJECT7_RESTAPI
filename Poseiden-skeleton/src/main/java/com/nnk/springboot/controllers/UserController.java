@@ -2,10 +2,12 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.User;
 import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.service.UserService;
 import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +24,16 @@ public class UserController {
 
   @Autowired
   private UserRepository userRepository;
+  @Autowired
+  private UserService userService;
 
   @RequestMapping("/user/list")
-  public String home(Model model) {
+  public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name") String username) {
     logger.info(
         "request of the endpoint '/user/list'");
     model.addAttribute("users", userRepository.findAll());
+    User user = userService.getUser(username);
+    model.addAttribute("user", user);
     return "user/list";
   }
 
