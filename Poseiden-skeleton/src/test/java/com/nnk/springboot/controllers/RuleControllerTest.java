@@ -7,8 +7,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.Rule;
 import com.nnk.springboot.repositories.UserRepository;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,18 +27,17 @@ public class RuleControllerTest {
   @MockBean
   private UserRepository userRepositoryMock;
 
-
-  @Test
-  @WithMockUser(roles = "ADMIN")
-  public void testHome() throws Exception {
-    List<Rule> rules = new ArrayList<>();
-
-    when(ruleRestControllerMock.getRules())
-        .thenReturn(rules);
-
-    mockMvc.perform(get("/rule/list"))
-        .andExpect(status().isOk()).andExpect(view().name("rule/list"));
-  }
+  /*
+   * @Test
+   * 
+   * @WithMockUser(roles = "ADMIN") public void testHome() throws Exception {
+   * List<Rule> rules = new ArrayList<>();
+   * 
+   * when(ruleRestControllerMock.getRules()) .thenReturn(rules);
+   * 
+   * mockMvc.perform(get("/rule/list"))
+   * .andExpect(status().isOk()).andExpect(view().name("rule/list")); }
+   */
 
   @Test
   @WithMockUser(roles = "ADMIN")

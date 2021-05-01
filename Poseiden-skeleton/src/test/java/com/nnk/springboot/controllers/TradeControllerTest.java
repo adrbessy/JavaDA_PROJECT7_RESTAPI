@@ -7,8 +7,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.Trade;
 import com.nnk.springboot.repositories.UserRepository;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,18 +27,17 @@ public class TradeControllerTest {
   @MockBean
   private UserRepository userRepositoryMock;
 
-
-  @Test
-  @WithMockUser(roles = "ADMIN")
-  public void testHome() throws Exception {
-    List<Trade> trades = new ArrayList<>();
-
-    when(tradeRestControllerMock.getTrades())
-        .thenReturn(trades);
-
-    mockMvc.perform(get("/trade/list"))
-        .andExpect(status().isOk()).andExpect(view().name("trade/list"));
-  }
+  /*
+   * @Test
+   * 
+   * @WithMockUser(roles = "ADMIN") public void testHome() throws Exception {
+   * List<Trade> trades = new ArrayList<>();
+   * 
+   * when(tradeRestControllerMock.getTrades()) .thenReturn(trades);
+   * 
+   * mockMvc.perform(get("/trade/list"))
+   * .andExpect(status().isOk()).andExpect(view().name("trade/list")); }
+   */
 
   @Test
   @WithMockUser(roles = "ADMIN")

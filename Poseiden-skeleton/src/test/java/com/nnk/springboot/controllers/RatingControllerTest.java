@@ -7,8 +7,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.repositories.UserRepository;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,18 +27,17 @@ public class RatingControllerTest {
   @MockBean
   private UserRepository userRepositoryMock;
 
-
-  @Test
-  @WithMockUser(roles = "ADMIN")
-  public void testHome() throws Exception {
-    List<Rating> ratings = new ArrayList<>();
-
-    when(ratingRestControllerMock.getRatings())
-        .thenReturn(ratings);
-
-    mockMvc.perform(get("/rating/list"))
-        .andExpect(status().isOk()).andExpect(view().name("rating/list"));
-  }
+  /*
+   * @Test
+   * 
+   * @WithMockUser(roles = "ADMIN") public void testHome() throws Exception {
+   * List<Rating> ratings = new ArrayList<>();
+   * 
+   * when(ratingRestControllerMock.getRatings()) .thenReturn(ratings);
+   * 
+   * mockMvc.perform(get("/rating/list"))
+   * .andExpect(status().isOk()).andExpect(view().name("rating/list")); }
+   */
 
   @Test
   @WithMockUser(roles = "ADMIN")
