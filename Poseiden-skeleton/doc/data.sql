@@ -112,10 +112,10 @@ CREATE SEQUENCE public.users_id_seq;
 
 CREATE TABLE Users (
   id SMALLINT NOT NULL DEFAULT nextval('public.users_id_seq'),
-  username VARCHAR(125),
-  password VARCHAR(125),
-  fullname VARCHAR(125),
-  role VARCHAR(125),
+  username VARCHAR(125) NOT NULL UNIQUE,
+  password VARCHAR(125) NOT NULL,
+  fullname VARCHAR(125) NOT NULL,
+  role VARCHAR(125) NOT NULL,
 
   PRIMARY KEY (id)
 );
