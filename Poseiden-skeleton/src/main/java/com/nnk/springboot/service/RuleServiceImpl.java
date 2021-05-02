@@ -4,6 +4,7 @@ import com.nnk.springboot.model.Rule;
 import com.nnk.springboot.repositories.RuleRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,12 +77,13 @@ public class RuleServiceImpl implements RuleService {
    * @param id An id
    * @return the deleted rule
    */
+  @Transactional
   @Override
   public Rule deleteRule(Integer id) {
     logger.debug("in the method deleteRule in the class RuleServiceImpl");
     Rule rule = null;
     try {
-      rule = ruleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rule Id:" + id));
+      rule = ruleRepository.findById(id);
       ruleRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteRule :" + exception.getMessage());
@@ -100,7 +102,7 @@ public class RuleServiceImpl implements RuleService {
     logger.debug("in the method getRule in the class RuleServiceImpl");
     Rule rule = null;
     try {
-      rule = ruleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rule Id:" + id));
+      rule = ruleRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getRule :" + exception.getMessage());
     }

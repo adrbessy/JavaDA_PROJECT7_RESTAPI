@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Rule;
 import com.nnk.springboot.model.User;
+import com.nnk.springboot.repositories.RuleRepository;
 import com.nnk.springboot.service.UserService;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,8 @@ public class RuleController {
   private RuleRestController ruleRestController;
   @Autowired
   private UserService userService;
+  @Autowired
+  private RuleRepository ruleRepository;
 
   @RequestMapping("/rule/list")
   public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name") String username) {
@@ -57,9 +60,9 @@ public class RuleController {
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
     logger.info(
         "GET request of the endpoint '/rule/update/{id}'");
-    Rule newRule = new Rule();
+    Rule rule = ruleRepository.findById(id);
     model.addAttribute("id", id);
-    model.addAttribute("newRule", newRule);
+    model.addAttribute("rule", rule);
     return "rule/update";
   }
 

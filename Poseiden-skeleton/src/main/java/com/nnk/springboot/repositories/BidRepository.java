@@ -2,15 +2,16 @@ package com.nnk.springboot.repositories;
 
 import com.nnk.springboot.model.Bid;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BidRepository extends JpaRepository<Bid, Integer> {
+public interface BidRepository extends JpaRepository<Bid, Long>, JpaSpecificationExecutor<Bid> {
 
-  @Override
   void deleteById(Integer id);
 
-  @Override
   boolean existsById(Integer id);
+
+  Bid findById(Integer id);
 
 }

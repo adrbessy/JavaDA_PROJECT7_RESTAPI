@@ -126,11 +126,17 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.Users.id;
 INSERT INTO Users 
 (fullname, username, password, role) 
 VALUES 
-('Administrator', 'admin', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'ADMIN'),
-('User', 'user', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER');
+('Administrator', 'admin', '$2y$10$xM2gBnKLhpfL0XdPByYGZ.QCOwIQ8arGGyzY/zMrTrSz1Gy4MxcBC', 'ADMIN'),
+('User', 'user', '$2y$10$gJoiIlKpA7SchMNhSaysseSzGp.hEMyUjVwAJSywyAcyTVvU4JFze', 'USER');
 
 INSERT INTO bid 
 (account, type, bid_quantity) 
 VALUES 
 ('account', 'type', 5),
 ('account2', 'type2', 10);
+
+INSERT INTO trade 
+(account, type, buy_quantity) 
+VALUES 
+('account', 'type', 50),
+('account2', 'type2', 100);

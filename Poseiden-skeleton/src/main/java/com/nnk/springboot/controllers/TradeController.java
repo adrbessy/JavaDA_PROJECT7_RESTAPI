@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Trade;
 import com.nnk.springboot.model.User;
+import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.service.UserService;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,8 @@ public class TradeController {
   private TradeRestController tradeRestController;
   @Autowired
   private UserService userService;
+  @Autowired
+  private TradeRepository tradeRepository;
 
   @RequestMapping("/trade/list")
   public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name") String username) {
@@ -57,9 +60,9 @@ public class TradeController {
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
     logger.info(
         "GET request of the endpoint '/trade/update/{id}'");
-    Trade newTrade = new Trade();
+    Trade trade = tradeRepository.findById(id);
     model.addAttribute("id", id);
-    model.addAttribute("newTrade", newTrade);
+    model.addAttribute("trade", trade);
     return "trade/update";
   }
 

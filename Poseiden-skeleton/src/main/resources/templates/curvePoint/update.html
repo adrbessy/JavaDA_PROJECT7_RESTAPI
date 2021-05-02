@@ -13,7 +13,7 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/curvePoint/update/{id}(id=${id})}" th:object="${newCurvePoint}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/curvePoint/update/{id}(id=${id})}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">
 			<div class="form-group">
 				<label for="curveIdInput">curveId</label> 
 				<input
@@ -23,13 +23,13 @@
 			<div class="form-group">
 				<label for="termInput">Term</label> 
 				<input
-					type="number" th:field="*{term}" class="form-control" id="termInput"
+					type="number" step="0.01" th:field="*{term}" class="form-control" id="termInput"
 					aria-describedby="termHelp" placeholder="Term">
 			</div>
 			<div class="form-group">
 				<label for="valueInput">Value</label> 
 				<input
-					type="number" th:field="*{value}" class="form-control" id="valueInput"
+					type="number" step="0.01" th:field="*{value}" class="form-control" id="valueInput"
 					aria-describedby="mailHelp" placeholder="Value"> 
 			</div>
 			<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>

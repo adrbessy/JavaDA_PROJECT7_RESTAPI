@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.model.User;
+import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.service.UserService;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,8 @@ public class RatingController {
   private RatingRestController ratingRestController;
   @Autowired
   private UserService userService;
+  @Autowired
+  private RatingRepository ratingRepository;
 
   @RequestMapping("/rating/list")
   public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name") String username) {
@@ -57,9 +60,9 @@ public class RatingController {
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
     logger.info(
         "GET request of the endpoint '/rating/update/{id}'");
-    Rating newRating = new Rating();
+    Rating rating = ratingRepository.findById(id);
     model.addAttribute("id", id);
-    model.addAttribute("newRating", newRating);
+    model.addAttribute("rating", rating);
     return "rating/update";
   }
 

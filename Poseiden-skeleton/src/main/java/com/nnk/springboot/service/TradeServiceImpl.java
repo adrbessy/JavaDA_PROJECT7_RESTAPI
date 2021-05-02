@@ -4,6 +4,7 @@ import com.nnk.springboot.model.Trade;
 import com.nnk.springboot.repositories.TradeRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,11 +78,12 @@ public class TradeServiceImpl implements TradeService {
    * @return the deleted trade
    */
   @Override
+  @Transactional
   public Trade deleteTrade(Integer id) {
     logger.debug("in the method deleteTrade in the class TradeServiceImpl");
     Trade trade = null;
     try {
-      trade = tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
+      trade = tradeRepository.findById(id);
       tradeRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteTrade :" + exception.getMessage());
@@ -100,7 +102,7 @@ public class TradeServiceImpl implements TradeService {
     logger.debug("in the method getTrade in the class TradeServiceImpl");
     Trade trade = null;
     try {
-      trade = tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
+      trade = tradeRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getTrade :" + exception.getMessage());
     }

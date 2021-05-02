@@ -8,7 +8,6 @@ import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.repositories.BidRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -77,9 +76,8 @@ public class BidServiceImplTest {
   public void testDeleteBid() {
     Integer id = 1;
     bid = new Bid();
-    Optional<Bid> optionalBid = Optional.of(bid);
 
-    when(bidRepositoryMock.findById(id)).thenReturn(optionalBid);
+    when(bidRepositoryMock.findById(id)).thenReturn(bid);
     doNothing().when(bidRepositoryMock).deleteById(id);
 
     Bid result = bidService.deleteBid(id);
@@ -94,9 +92,8 @@ public class BidServiceImplTest {
   public void testGetBid() {
     Integer id = 1;
     bid = new Bid();
-    Optional<Bid> optionalBid = Optional.of(bid);
 
-    when(bidRepositoryMock.findById(id)).thenReturn(optionalBid);
+    when(bidRepositoryMock.findById(id)).thenReturn(bid);
 
     assertThat(bidService.getBid(id)).isEqualTo(bid);
   }

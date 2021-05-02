@@ -8,7 +8,6 @@ import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,9 +77,8 @@ public class RatingServiceImplTest {
   public void testDeleteRating() {
     Integer id = 1;
     rating = new Rating();
-    Optional<Rating> optionalRating = Optional.of(rating);
 
-    when(ratingRepositoryMock.findById(id)).thenReturn(optionalRating);
+    when(ratingRepositoryMock.findById(id)).thenReturn(rating);
     doNothing().when(ratingRepositoryMock).deleteById(id);
 
     Rating result = ratingService.deleteRating(id);
@@ -95,9 +93,8 @@ public class RatingServiceImplTest {
   public void testGetRating() {
     Integer id = 1;
     rating = new Rating();
-    Optional<Rating> optionalRating = Optional.of(rating);
 
-    when(ratingRepositoryMock.findById(id)).thenReturn(optionalRating);
+    when(ratingRepositoryMock.findById(id)).thenReturn(rating);
 
     assertThat(ratingService.getRating(id)).isEqualTo(rating);
   }

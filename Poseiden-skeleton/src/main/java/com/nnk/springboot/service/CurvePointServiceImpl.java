@@ -4,6 +4,7 @@ import com.nnk.springboot.model.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,12 +78,12 @@ public class CurvePointServiceImpl implements CurvePointService {
    * @return the deleted curve point
    */
   @Override
+  @Transactional
   public CurvePoint deleteCurvePoint(Integer id) {
     logger.debug("in the method deleteCurvePoint in the class CurvePointServiceImpl");
     CurvePoint curvePoint = null;
     try {
-      curvePoint = curvePointRepository.findById(id)
-          .orElseThrow(() -> new IllegalArgumentException("Invalid curve point Id:" + id));
+      curvePoint = curvePointRepository.findById(id);
       curvePointRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteCurvePoint :" + exception.getMessage());
@@ -101,8 +102,7 @@ public class CurvePointServiceImpl implements CurvePointService {
     logger.debug("in the method getCurvePoint in the class CurvePointServiceImpl");
     CurvePoint curvePoint = null;
     try {
-      curvePoint = curvePointRepository.findById(id)
-          .orElseThrow(() -> new IllegalArgumentException("Invalid curve point Id:" + id));
+      curvePoint = curvePointRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getCurvePoint :" + exception.getMessage());
     }

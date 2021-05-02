@@ -4,6 +4,7 @@ import com.nnk.springboot.model.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,11 +78,12 @@ public class RatingServiceImpl implements RatingService {
    * @return the deleted rating
    */
   @Override
+  @Transactional
   public Rating deleteRating(Integer id) {
     logger.debug("in the method deleteRating in the class RatingServiceImpl");
     Rating rating = null;
     try {
-      rating = ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
+      rating = ratingRepository.findById(id);
       ratingRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteRating :" + exception.getMessage());
@@ -100,7 +102,7 @@ public class RatingServiceImpl implements RatingService {
     logger.debug("in the method getRating in the class RatingServiceImpl");
     Rating rating = null;
     try {
-      rating = ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
+      rating = ratingRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getRating :" + exception.getMessage());
     }

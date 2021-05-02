@@ -8,7 +8,6 @@ import com.nnk.springboot.model.Rule;
 import com.nnk.springboot.repositories.RuleRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,9 +77,8 @@ public class RuleServiceImplTest {
   public void testDeleteRule() {
     Integer id = 1;
     rule = new Rule();
-    Optional<Rule> optionalRule = Optional.of(rule);
 
-    when(ruleRepositoryMock.findById(id)).thenReturn(optionalRule);
+    when(ruleRepositoryMock.findById(id)).thenReturn(rule);
     doNothing().when(ruleRepositoryMock).deleteById(id);
 
     Rule result = ruleService.deleteRule(id);
@@ -95,9 +93,8 @@ public class RuleServiceImplTest {
   public void testGetRule() {
     Integer id = 1;
     rule = new Rule();
-    Optional<Rule> optionalRule = Optional.of(rule);
 
-    when(ruleRepositoryMock.findById(id)).thenReturn(optionalRule);
+    when(ruleRepositoryMock.findById(id)).thenReturn(rule);
 
     assertThat(ruleService.getRule(id)).isEqualTo(rule);
   }

@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.model.User;
+import com.nnk.springboot.repositories.BidRepository;
 import com.nnk.springboot.service.UserService;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -27,6 +28,8 @@ public class BidController {
   private BidRestController bidRestController;
   @Autowired
   private UserService userService;
+  @Autowired
+  private BidRepository bidRepository;
 
   @RequestMapping("/bid/list")
   public String home(Model model,
@@ -59,9 +62,9 @@ public class BidController {
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
     logger.info(
         "GET request of the endpoint '/bid/update/{id}'");
-    Bid newBid = new Bid();
+    Bid bid = bidRepository.findById(id);
     model.addAttribute("id", id);
-    model.addAttribute("newBid", newBid);
+    model.addAttribute("bid", bid);
     return "bid/update";
   }
 

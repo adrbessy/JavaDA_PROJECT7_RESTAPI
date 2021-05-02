@@ -1,6 +1,6 @@
 package com.nnk.springboot.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.nnk.springboot.repositories.CurvePointRepository;
@@ -47,7 +47,7 @@ public class CurvePointTests {
     // Delete
     Integer id = curvePoint.getId();
     curvePointRepository.delete(curvePoint);
-    assertThat(curvePointRepository.findById(id)).isEmpty();
+    assertNull(curvePointRepository.findById(id));
   }
 
   @Test

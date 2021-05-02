@@ -8,7 +8,6 @@ import com.nnk.springboot.model.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,9 +77,8 @@ public class CurvePointServiceImplTest {
   public void testDeleteCurvePoint() {
     Integer id = 1;
     curvePoint = new CurvePoint();
-    Optional<CurvePoint> optionalCurvePoint = Optional.of(curvePoint);
 
-    when(curvePointRepositoryMock.findById(id)).thenReturn(optionalCurvePoint);
+    when(curvePointRepositoryMock.findById(id)).thenReturn(curvePoint);
     doNothing().when(curvePointRepositoryMock).deleteById(id);
 
     CurvePoint result = curvePointService.deleteCurvePoint(id);
@@ -95,9 +93,8 @@ public class CurvePointServiceImplTest {
   public void testGetCurvePoint() {
     Integer id = 1;
     curvePoint = new CurvePoint();
-    Optional<CurvePoint> optionalCurvePoint = Optional.of(curvePoint);
 
-    when(curvePointRepositoryMock.findById(id)).thenReturn(optionalCurvePoint);
+    when(curvePointRepositoryMock.findById(id)).thenReturn(curvePoint);
 
     assertThat(curvePointService.getCurvePoint(id)).isEqualTo(curvePoint);
   }

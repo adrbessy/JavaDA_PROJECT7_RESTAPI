@@ -2,14 +2,15 @@ package com.nnk.springboot.repositories;
 
 import com.nnk.springboot.model.Trade;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TradeRepository extends JpaRepository<Trade, Integer> {
+public interface TradeRepository extends JpaRepository<Trade, Long>, JpaSpecificationExecutor<Trade> {
 
-  @Override
   void deleteById(Integer id);
 
-  @Override
   boolean existsById(Integer id);
+
+  Trade findById(Integer id);
 }

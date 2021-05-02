@@ -4,6 +4,7 @@ import com.nnk.springboot.model.Bid;
 import com.nnk.springboot.repositories.BidRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,12 +78,12 @@ public class BidServiceImpl implements BidService {
    * @return the deleted bid
    */
   @Override
+  @Transactional
   public Bid deleteBid(Integer id) {
     logger.debug("in the method deleteBid in the class BidServiceImpl");
     Bid bid = null;
     try {
-      bid = bidRepository.findById(id)
-          .orElseThrow(() -> new IllegalArgumentException("Invalidbid Id:" + id));
+      bid = bidRepository.findById(id);
       bidRepository.deleteById(id);
     } catch (Exception exception) {
       logger.error("Error in the method deleteBid :" + exception.getMessage());
@@ -102,7 +103,7 @@ public class BidServiceImpl implements BidService {
     Bid bid = null;
     try {
       if (bidRepository.findById(id) != null)
-        bid = bidRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bid Id:" + id));
+        bid = bidRepository.findById(id);
     } catch (Exception exception) {
       logger.error("Error in the method getBid :" + exception.getMessage());
     }

@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.model.CurvePoint;
 import com.nnk.springboot.model.User;
+import com.nnk.springboot.repositories.CurvePointRepository;
 import com.nnk.springboot.service.UserService;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,8 @@ public class CurvePointController {
   private CurvePointRestController curvePointRestController;
   @Autowired
   private UserService userService;
+  @Autowired
+  private CurvePointRepository curvePointRepository;
 
   @RequestMapping("/curvePoint/list")
   public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name") String username) {
@@ -57,9 +60,9 @@ public class CurvePointController {
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
     logger.info(
         "GET request of the endpoint '/curvePoint/update/{id}'");
-    CurvePoint newCurvePoint = new CurvePoint();
+    CurvePoint curvePoint = curvePointRepository.findById(id);
     model.addAttribute("id", id);
-    model.addAttribute("newCurvePoint", newCurvePoint);
+    model.addAttribute("curvePoint", curvePoint);
     return "curvePoint/update";
   }
 

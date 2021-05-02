@@ -13,7 +13,7 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/trade/update/{id}(id=${id})}" th:object="${newTrade}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/trade/update/{id}(id=${id})}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
 			<div class="form-group">
 				<label for="accountInput">Account</label> 
 				<input
@@ -29,7 +29,7 @@
 			<div class="form-group">
 				<label for="bidQuantitylInput">Buy quantity</label> 
 				<input
-					type="text" th:field="*{buyQuantity}" class="form-control" id="bidQuantityInput"
+					type="text" step="0.01" th:field="*{buyQuantity}" class="form-control" id="bidQuantityInput"
 					aria-describedby="mailHelp" placeholder="Buy quantity"> 
 			</div>
 			<button type="button" class="btn btn-danger text-white px-5 font-weight-bold">Cancel</button>

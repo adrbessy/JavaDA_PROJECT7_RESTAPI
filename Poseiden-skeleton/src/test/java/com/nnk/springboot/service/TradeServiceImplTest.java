@@ -8,7 +8,6 @@ import com.nnk.springboot.model.Trade;
 import com.nnk.springboot.repositories.TradeRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,9 +77,8 @@ public class TradeServiceImplTest {
   public void testDeleteTrade() {
     Integer id = 1;
     trade = new Trade();
-    Optional<Trade> optionalTrade = Optional.of(trade);
 
-    when(tradeRepositoryMock.findById(id)).thenReturn(optionalTrade);
+    when(tradeRepositoryMock.findById(id)).thenReturn(trade);
     doNothing().when(tradeRepositoryMock).deleteById(id);
 
     Trade result = tradeService.deleteTrade(id);
@@ -95,9 +93,8 @@ public class TradeServiceImplTest {
   public void testGetTrade() {
     Integer id = 1;
     trade = new Trade();
-    Optional<Trade> optionalTrade = Optional.of(trade);
 
-    when(tradeRepositoryMock.findById(id)).thenReturn(optionalTrade);
+    when(tradeRepositoryMock.findById(id)).thenReturn(trade);
 
     assertThat(tradeService.getTrade(id)).isEqualTo(trade);
   }
