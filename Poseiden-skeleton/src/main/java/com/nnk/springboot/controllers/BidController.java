@@ -29,7 +29,8 @@ public class BidController {
   private UserService userService;
 
   @RequestMapping("/bid/list")
-  public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name") String username) {
+  public String home(Model model,
+      @CurrentSecurityContext(expression = "authentication?.name") String username) {
     logger.info(
         "request of the endpoint '/bid/list'");
     List<Bid> bidList = bidRestController.getBids();
