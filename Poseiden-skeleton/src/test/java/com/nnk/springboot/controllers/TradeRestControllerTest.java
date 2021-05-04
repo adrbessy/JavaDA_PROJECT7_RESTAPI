@@ -118,4 +118,39 @@ public class TradeRestControllerTest {
     this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk());
   }
 
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testUpdateTradeIfIdDoesntExist() throws Exception {
+    Integer id = 1;
+    trade = new Trade();
+    trade.setAccount("account");
+    trade.setType("type");
+    trade.setBuyQuantity(10);
+    trade.setSellQuantity(10);
+    trade.setBuyPrice(10);
+    trade.setSellPrice(10);
+    trade.setBenchmark("a");
+    trade.setTradeDate(new Timestamp(System.currentTimeMillis()));
+    trade.setSecurity("");
+    trade.setTrader("a");
+    trade.setBook("");
+    trade.setStatus("");
+    trade.setCreationName("a");
+    trade.setCreationDate(new Timestamp(System.currentTimeMillis()));
+    trade.setRevisionName("");
+    trade.setDealName("a");
+    trade.setRevisionDate(new Timestamp(System.currentTimeMillis()));
+    trade.setDealType("");
+    trade.setSourceListId("");
+    trade.setSide("");
+
+    when(tradeServiceMock.tradeExist(id)).thenReturn(false);
+
+    MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        .put("/trade/1")
+        .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        .content(new ObjectMapper().writeValueAsString(trade));
+    this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isNotFound());
+  }
+
 }

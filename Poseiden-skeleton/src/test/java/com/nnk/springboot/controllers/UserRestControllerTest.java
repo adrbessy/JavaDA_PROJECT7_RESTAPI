@@ -24,6 +24,7 @@ public class UserRestControllerTest {
   // private User user;
   // private User user2;
 
+
   @Test
   @WithMockUser(roles = "ADMIN")
   public void testGetUsers() throws Exception {
@@ -34,7 +35,7 @@ public class UserRestControllerTest {
    * @Test
    * 
    * @WithMockUser(roles = "ADMIN") public void testCreateUser() throws Exception
-   * { user = new User(); user.setUsername("username");
+   * { user = new User(); user.setId(1); user.setUsername("username");
    * user.setPassword("aZer0%54a"); user.setFullname("fullname");
    * user.setRole("user");
    * 

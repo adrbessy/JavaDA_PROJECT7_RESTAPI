@@ -100,4 +100,22 @@ public class RuleRestControllerTest {
     this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk());
   }
 
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testUpdateRuleIfIdDoesntExist() throws Exception {
+    Integer id = 1;
+    rule = new Rule();
+    rule.setName("name");
+    rule.setDescription("description");
+    rule.setJson("json");
+
+    when(ruleServiceMock.ruleExist(id)).thenReturn(false);
+
+    MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        .put("/rule/1")
+        .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        .content(new ObjectMapper().writeValueAsString(rule));
+    this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isNotFound());
+  }
+
 }

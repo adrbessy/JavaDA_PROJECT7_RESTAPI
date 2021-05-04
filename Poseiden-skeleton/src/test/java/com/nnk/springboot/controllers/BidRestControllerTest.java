@@ -52,6 +52,20 @@ public class BidRestControllerTest {
     this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk());
   }
 
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testCreateBidifAccountIsNull() throws Exception {
+    bid = new Bid();
+    bid.setAccount(null);
+    bid.setType("type");
+    bid.setAskQuantity(10);
+
+    MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/bid")
+        .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        .content(new ObjectMapper().writeValueAsString(bid));
+    this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isForbidden());
+  }
+
 
   @Test
   @WithMockUser(roles = "ADMIN")
@@ -88,7 +102,7 @@ public class BidRestControllerTest {
     bid = new Bid();
     bid.setAccount("account");
     bid.setType("type");
-    bid.setAskQuantity(10);
+    bid.setBidQuantity(10);
 
     when(bidServiceMock.bidExist(id)).thenReturn(true);
     when(bidServiceMock.getBid(id)).thenReturn(bid);
@@ -98,6 +112,24 @@ public class BidRestControllerTest {
         .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
         .content(new ObjectMapper().writeValueAsString(bid));
     this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk());
+  }
+
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testUpdateBidIfIdDoesntExist() throws Exception {
+    Integer id = 1;
+    bid = new Bid();
+    bid.setAccount("account");
+    bid.setType("type");
+    bid.setBidQuantity(10);
+
+    when(bidServiceMock.bidExist(id)).thenReturn(false);
+
+    MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        .put("/bid/1")
+        .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        .content(new ObjectMapper().writeValueAsString(bid));
+    this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isNotFound());
   }
 
 }

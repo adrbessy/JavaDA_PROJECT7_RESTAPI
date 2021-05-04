@@ -102,4 +102,23 @@ public class RatingRestControllerTest {
     this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk());
   }
 
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testUpdateRatingIfIdDoesntExist() throws Exception {
+    Integer id = 1;
+    rating = new Rating();
+    rating.setMoodysRating("moodysRating");
+    rating.setSandpRating("sandpRating");
+    rating.setFitchRating("fitchRating");
+    rating.setOrderNumber(10);
+
+    when(ratingServiceMock.ratingExist(id)).thenReturn(false);
+
+    MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        .put("/rating/1")
+        .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        .content(new ObjectMapper().writeValueAsString(rating));
+    this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isNotFound());
+  }
+
 }

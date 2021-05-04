@@ -52,6 +52,20 @@ public class CurvePointRestControllerTest {
     this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk());
   }
 
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testCreateCurvePointIfCurveIdIsNull() throws Exception {
+    curvePoint = new CurvePoint();
+    curvePoint.setCurveId(null);
+    curvePoint.setTerm(1);
+    curvePoint.setValue(10);
+
+    MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/curvePoint")
+        .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        .content(new ObjectMapper().writeValueAsString(curvePoint));
+    this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isForbidden());
+  }
+
 
   @Test
   @WithMockUser(roles = "ADMIN")
@@ -98,6 +112,24 @@ public class CurvePointRestControllerTest {
         .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
         .content(new ObjectMapper().writeValueAsString(curvePoint));
     this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk());
+  }
+
+  @Test
+  @WithMockUser(roles = "ADMIN")
+  public void testUpdateCurvePointIfIdDoesntExist() throws Exception {
+    Integer id = 1;
+    curvePoint = new CurvePoint();
+    curvePoint.setCurveId(1);
+    curvePoint.setTerm(1);
+    curvePoint.setValue(10);
+
+    when(curvePointServiceMock.curvePointExist(id)).thenReturn(false);
+
+    MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        .put("/curvePoint/1")
+        .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        .content(new ObjectMapper().writeValueAsString(curvePoint));
+    this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isNotFound());
   }
 
 }
