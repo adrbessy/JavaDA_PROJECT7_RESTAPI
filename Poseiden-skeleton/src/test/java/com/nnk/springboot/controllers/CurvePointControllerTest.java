@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import com.nnk.springboot.model.CurvePoint;
 import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,14 +27,18 @@ public class CurvePointControllerTest {
   private CurvePointRestController curvePointRestControllerMock;
   @MockBean
   private UserRepository userRepositoryMock;
+  @MockBean
+  private UserService userServiceMock;
 
   /*
    * @Test
    * 
    * @WithMockUser(roles = "ADMIN") public void testHome() throws Exception {
-   * List<CurvePoint> curvePoints = new ArrayList<>();
+   * List<CurvePoint> curvePoints = new ArrayList<>(); User user = new User();
+   * user.setUsername("Adrien"); user.setRole("ADMIN");
    * 
-   * when(curvePointRestControllerMock.getCurvePoints()) .thenReturn(curvePoints);
+   * when(curvePointRestControllerMock.getCurvePoints()).thenReturn(curvePoints);
+   * when(userServiceMock.getUser("Adrien")).thenReturn(user);
    * 
    * mockMvc.perform(get("/curvePoint/list"))
    * .andExpect(status().isOk()).andExpect(view().name("curvePoint/list")); }

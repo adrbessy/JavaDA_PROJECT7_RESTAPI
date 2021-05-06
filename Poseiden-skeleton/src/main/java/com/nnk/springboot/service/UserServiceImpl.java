@@ -4,6 +4,7 @@ import com.nnk.springboot.model.User;
 import com.nnk.springboot.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,7 @@ public class UserServiceImpl implements UserService {
    * @param id An id
    * @return the deleted user
    */
+  @Transactional
   @Override
   public User deleteUser(Integer id) {
     logger.debug("in the method deleteUser in the class UserServiceImpl");
