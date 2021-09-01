@@ -46,14 +46,15 @@
 					<td><span th:text="${rating.fitchRating}"> FitchRating </span></td>
 					<td><span th:text="${rating.orderNumber}"> Order </span></td>
 
-					<td>
-						<a th:href="@{/rating/update/{id}(id=${rating.id})}"><button class="btn">Edit</button></a>		
+					<td class="text-center">
+						<a th:href="@{/rating/update/{id}(id=${rating.id})}"><button class="btn btn-secondary">Edit</button></a>		
 						<a th:href="@{/rating/delete/{id}(id=${rating.id})}"><button class="btn btn-danger">Delete</button></a>						
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	<img src="../../images/logo_poseidon.png" alt="Logo de POSEIDON" class="float-right" width="125" height="100" >
 </div>
 </body>
 </html>

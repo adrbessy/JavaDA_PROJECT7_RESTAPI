@@ -50,14 +50,15 @@
 					<td><span th:text="${rule.sqlStr}"> sqlString </span></td>
 					<td><span th:text="${rule.sqlPart}"> sqlPart </span></td>
 
-					<td>
-						<a th:href="@{/rule/update/{id}(id=${rule.id})}"><button class="btn">Edit</button></a>		
+					<td class="text-center">
+						<a th:href="@{/rule/update/{id}(id=${rule.id})}"><button class="btn btn-secondary">Edit</button></a>		
 						<a th:href="@{/rule/delete/{id}(id=${rule.id})}"><button class="btn btn-danger">Delete</button></a>						
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	<img src="../../images/logo_poseidon.png" alt="Logo de POSEIDON" class="float-right" width="125" height="100" >
 </div>
 </body>
 </html>

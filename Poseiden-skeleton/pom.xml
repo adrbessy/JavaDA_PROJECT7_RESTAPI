@@ -43,6 +43,7 @@
             <artifactId>bootstrap</artifactId>
             <version>4.3.1</version>
         </dependency>
+        
         <dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>webjars-locator-core</artifactId>
@@ -249,12 +250,12 @@
         <plugins>
 		    <!-- SpotBugs -->
 			    <plugin>
-				      <groupId>com.github.spotbugs</groupId>
-				      <artifactId>spotbugs-maven-plugin</artifactId>
-				      <version>4.2.0</version>
-				      <configuration>
-				      <maxRank>17</maxRank>
-				      </configuration>
+			      	<groupId>com.github.spotbugs</groupId>
+				    <artifactId>spotbugs-maven-plugin</artifactId>
+				    <version>4.2.0</version>
+				    <configuration>
+				    <maxRank>17</maxRank>
+				    </configuration>
 			    </plugin>
 			    <plugin>
 			        <groupId>org.apache.maven.plugins</groupId>

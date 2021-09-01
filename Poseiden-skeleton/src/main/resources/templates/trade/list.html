@@ -43,14 +43,15 @@
 					<td><span th:text="${trade.account}"> Account </span></td>
 					<td><span th:text="${trade.type}"> Type </span></td>
 					<td><span th:text="${trade.buyQuantity}"> Buy Quantity </span></td>
-					<td>
-						<a th:href="@{/trade/update/{id}(id=${trade.id})}"><button class="btn">Edit</button></a>		
+					<td class="text-center">
+						<a th:href="@{/trade/update/{id}(id=${trade.id})}"><button class="btn btn-secondary">Edit</button></a>		
 						<a th:href="@{/trade/delete/{id}(id=${trade.id})}"><button class="btn btn-danger">Delete</button></a>						
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	<img src="../../images/logo_poseidon.png" alt="Logo de POSEIDON" class="float-right" width="125" height="100" >
 </div>
 </body>
 </html>
